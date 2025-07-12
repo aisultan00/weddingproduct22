@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://your-website.com/sitemap.xml
+
+# Disallow admin areas (if any)
+Disallow: /api/
+
+# Allow all other content
+Allow: / 

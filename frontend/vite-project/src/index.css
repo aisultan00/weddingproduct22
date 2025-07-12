@@ -1,0 +1,33 @@
+@media only screen and (max-width: 640px){
+    .image{
+        width:65vw;
+        height:auto;
+        position:relative;
+        border-radius: 20px;
+
+    }
+}
+@media only screen and (min-width: 600px) {
+    .image{
+        width: 70vw;
+        height:auto;
+        border-radius: 20px;
+        position:relative;
+        left:1px
+    }
+}
+@media only screen and (width<=400px) {
+    .image{
+        width: 60vw;
+        height:auto;
+        border-radius: 20px;
+        position:relative;
+        right:5px
+ }
+}
+.paper{
+    position:absolute;
+    left:4vw;
+    right:4vw;
+    border-radius: 8px;
+}

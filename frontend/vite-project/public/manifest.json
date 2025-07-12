@@ -1,0 +1,27 @@
+{
+  "name": "Қазақтың тойы",
+  "short_name": "Қазақтың тойы",
+  "description": "Қазақтың тойын онлайн ұйымдастырыңыз, қонақтарыңызды оңай шақырыңыз",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7C4DFF",
+  "theme_color": "#7C4DFF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["lifestyle", "social", "events"],
+  "lang": "kk",
+  "dir": "ltr"
+} 
