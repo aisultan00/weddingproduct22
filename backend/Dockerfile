@@ -10,6 +10,8 @@ COPY package*.json ./
 # Устанавливаем только production зависимости
 RUN npm ci --only=production
 
+RUN npm install 
+
 # Копируем исходный код
 COPY . .
 
