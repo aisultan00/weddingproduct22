@@ -73,7 +73,7 @@ function Betasharspage() {
     const handleStripePay = async () => {
         setIsPaying(true);
         try {
-            const res = await axios.post(`${process.env.BASED_URL}/api/betashar/create-checkout-session`, {
+            const res = await axios.post(`https://weddingproduct22.onrender.com/api/betashar/create-checkout-session`, {
                 kelin: demoBetashar.kelin,
                 desire: demoBetashar.desire,
                 date: demoBetashar.date,
@@ -114,120 +114,119 @@ function Betasharspage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
             >
-            <Container maxWidth="md" sx={{
-                mt: 4, display: "flex", flexDirection: "column", alignItems: "center",
-                background: "linear-gradient(135deg, #FFDEE9 0%,#B5FFFC 100%)", borderRadius: 3, p: 4
-            }}>
-                <motion.div
-                    className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                    <Paper elevation={6} sx={{ p: 3, textAlign: "center", borderRadius: 6, background: "linear-gradient(135deg, #FFDEE9 0%,#B5FFFC 100%)" }}>
-                        <Typography variant="h4" fontWeight="bold" gutterBottom color="primary">Той жасау</Typography>
+            <Container maxWidth="md" sx={{ py: 4 }}>
+                <Paper elevation={6} sx={{
+                    background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
+                    color: "#1565c0",
+                    borderRadius: 4,
+                    boxShadow: "0 4px 24px 0 rgba(33,150,243,0.10)",
+                    p: 4,
+                    mb: 4
+                }}>
+                    <Typography variant="h4" fontWeight="bold" gutterBottom color="primary" align="center">
+                        Той жасау
+                    </Typography>
 
-                        <TextField
-                            label="Қыздың аты"
-                            fullWidth
-                            margin="normal"
-                            value={groom}
-                            onChange={e => setGroom(e.target.value)}
-                            error={!!errors.groom}
-                            helperText={errors.groom}
+                    <TextField
+                        label="Қыздың аты"
+                        fullWidth
+                        margin="normal"
+                        value={groom}
+                        onChange={e => setGroom(e.target.value)}
+                        error={!!errors.groom}
+                        helperText={errors.groom}
+                    />
+
+                    <TextField
+                        label="Шақырту сөзі"
+                        fullWidth
+                        margin="normal"
+                        value={desire}
+                        onChange={e => setDesire(e.target.value)}
+                    />
+
+                    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={kk}>
+                        <DateTimePicker
+                            sx={{ width: "100%" }}
+                            label="Тойдың уақыты"
+                            value={date}
+                            onChange={(newValue) => setDate(newValue)}
+                            ampm={false}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    fullWidth
+                                    margin="normal"
+                                    error={!!errors.date}
+                                    helperText={errors.date}
+                                />
+                            )}
                         />
+                    </LocalizationProvider>
+                    <TextField
+                        label="Той болатын жер"
+                        fullWidth
+                        margin="normal"
+                        value={location}
+                        onChange={e => setLocation(e.target.value)}
+                        error={!!errors.location}
+                        helperText={errors.location}
+                    />
 
-                        <TextField
-                            label="Шақырту сөзі"
-                            fullWidth
-                            margin="normal"
-                            value={desire}
-                            onChange={e => setDesire(e.target.value)}
+                    <TextField
+                        label="Той иелері"
+                        fullWidth
+                        margin="normal"
+                        value={representatives}
+                        onChange={e => setRepresentatives(e.target.value)}
+                        error={!!errors.representatives}
+                        helperText={errors.representatives}
+                    />
+
+                    <Box sx={{ mt: 2, textAlign: "center" }}>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            id="file-upload"
+                            style={{ display: "none" }}
+                            onChange={handleImageUpload}
                         />
-
-                        <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={kk}>
-                            <DateTimePicker
-                                sx={{ width: "100%" }}
-                                label="Тойдың уақыты"
-                                value={date}
-                                onChange={(newValue) => setDate(newValue)}
-                                ampm={false}
-                                renderInput={(params) => (
-                                    <TextField
-                                        {...params}
-                                        fullWidth
-                                        margin="normal"
-                                        error={!!errors.date}
-                                        helperText={errors.date}
-                                    />
-                                )}
-                            />
-                        </LocalizationProvider>
-                        <TextField
-                            label="Той болатын жер"
-                            fullWidth
-                            margin="normal"
-                            value={location}
-                            onChange={e => setLocation(e.target.value)}
-                            error={!!errors.location}
-                            helperText={errors.location}
-                        />
-
-                        <TextField
-                            label="Той иелері"
-                            fullWidth
-                            margin="normal"
-                            value={representatives}
-                            onChange={e => setRepresentatives(e.target.value)}
-                            error={!!errors.representatives}
-                            helperText={errors.representatives}
-                        />
-
-                        <Box sx={{ mt: 2, textAlign: "center" }}>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                id="file-upload"
-                                style={{ display: "none" }}
-                                onChange={handleImageUpload}
-                            />
-                            <label htmlFor="file-upload">
-                                <Button
-                                    variant="contained"
-                                    component="span"
-                                    sx={{
-                                        borderRadius: 3,
-                                        backgroundColor: "#ff4081",
-                                        color: "white",
-                                        "&:hover": { backgroundColor: "#e91e63" }
-                                    }}
-                                >
-                                    📷 Қыздың суреті
-                                </Button>
-                                {imageerror && (
-                                    <Typography variant="body2" sx={{ mt: 1, color: "error.main" }}>
-                                        Суретті салуынызды сұраймыз
-                                    </Typography>
-                                )}
-                            </label>
-                            {image && (
-                                <Typography variant="body2" sx={{ mt: 1, color: "#e91e63" }}>
-                                    Выбранный файл: {image.file?.name}
+                        <label htmlFor="file-upload">
+                            <Button
+                                variant="contained"
+                                component="span"
+                                sx={{
+                                    borderRadius: 3,
+                                    backgroundColor: "#ff4081",
+                                    color: "white",
+                                    "&:hover": { backgroundColor: "#e91e63" }
+                                }}
+                            >
+                                📷 Қыздың суреті
+                            </Button>
+                            {imageerror && (
+                                <Typography variant="body2" sx={{ mt: 1, color: "error.main" }}>
+                                    Суретті салуынызды сұраймыз
                                 </Typography>
                             )}
-                        </Box>
+                        </label>
+                        {image && (
+                            <Typography variant="body2" sx={{ mt: 1, color: "#e91e63" }}>
+                                Выбранный файл: {image.file?.name}
+                            </Typography>
+                        )}
+                    </Box>
 
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            fullWidth
-                            sx={{ mt: 2, borderRadius: 3, boxShadow: 3 }}
-                            onClick={addWedding}
-                        >
-                            ➕ Той жасау
-                        </Button>
-                    </Paper>
-                </motion.div>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        fullWidth
+                        sx={{ mt: 2, borderRadius: 3, boxShadow: 3 }}
+                        onClick={addWedding}
+                    >
+                        ➕ Той жасау
+                    </Button>
+                </Paper>
             </Container>
         </motion.div>
         </>

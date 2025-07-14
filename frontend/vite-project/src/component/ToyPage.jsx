@@ -23,11 +23,11 @@ function ToyPage(props) {
 
     useEffect(() => {
         if (props.demo) return;
-        axios.get(`${process.env.BASED_URL}/api/${props.toytype}/${props.id}`)
+        axios.get(`https://weddingproduct22.onrender.com/api/${props.toytype}/${props.id}`)
             .then(res => setWedding(res.data))
             .catch(err => console.error(err));
 
-        axios.get(`${process.env.BASED_URL}/api/${props.toytype}/${props.id}/guest-count`)
+        axios.get(`https://weddingproduct22.onrender.com/api/${props.toytype}/${props.id}/guest-count`)
             .then(res => setGuestCount(res.data.guestCount))
             .catch(err => console.error(err));
     }, [props.id, props.toytype, props.demo]);
@@ -112,13 +112,13 @@ function ToyPage(props) {
                     sx={{
                         p: { xs: 2, sm: 4 },
                         borderRadius: 5,
-                        background: "linear-gradient(135deg, #fff8e1 0%, #b388ff 100%)",
-                        boxShadow: "0 8px 32px 0 rgba(124,77,255,0.15)",
-                        color: "#5e35b1",
+                        background: "rgba(33,150,243,0.06)",
+                        boxShadow: "0 8px 32px 0 rgba(33,150,243,0.10)",
+                        color: "#1565c0",
                         position: "relative",
                         overflow: "hidden",
-                        border: "6px solid #7C4DFF",
-                        backgroundImage: `${kazakhPattern}, linear-gradient(135deg, #fff8e1 0%, #b388ff 100%)`,
+                        border: "6px solid #03A9F4",
+                        backgroundImage: `${kazakhPattern}, linear-gradient(135deg, #F5F7FA 0%, #A7C7E7 100%)`,
                         backgroundRepeat: "repeat, no-repeat",
                         backgroundSize: "120px, cover",
                     }}
@@ -127,7 +127,7 @@ function ToyPage(props) {
                     <Box sx={{
                         width: "100%",
                         height: 32,
-                        background: "#7C4DFF",
+                        background: "#2196F3",
                         backgroundImage: kazakhPattern,
                         backgroundRepeat: "repeat-x",
                         backgroundSize: "120px",
@@ -146,11 +146,10 @@ function ToyPage(props) {
                             fontWeight="bold"
                             align="center"
                             sx={{
-                                fontFamily: "Edu QLD Hand, cursive",
-                                color: "#7C4DFF",
+                                color: "#1565c0",
                                 mb: 2,
                                 letterSpacing: 2,
-                                textShadow: "0 2px 8px #fff8",
+                                textShadow: "0 2px 8px #fff",
                             }}
                         >
                             {props.toytype === "wedding" && `💍 ${wedding.groom?.toUpperCase()} & ${wedding.bride?.toUpperCase()}`}
@@ -177,7 +176,7 @@ function ToyPage(props) {
                                 />
                             </Box>
                         )}
-                        <Typography variant="h6" fontWeight="bold" mt={2} sx={{ color: "#8e24aa" }}>
+                        <Typography variant="h6" fontWeight="bold" mt={2} sx={{ color: "#03A9F4" }}>
                             Шақырту сөзі: <br />{wedding.desire}
                         </Typography>
                         {/* Countdown */}
@@ -187,7 +186,7 @@ function ToyPage(props) {
                                     fontFamily: "Georgia, serif",
                                     fontWeight: 500,
                                     fontSize: { xs: "1.1rem", sm: "1.3rem" },
-                                    color: "#3f51b5"
+                                    color: "#1565c0"
                                 }}
                             >
                                 Тойдың басталу уақыты:
@@ -208,7 +207,7 @@ function ToyPage(props) {
                                     fontFamily: "Georgia, serif",
                                     fontWeight: 500,
                                     fontSize: { xs: "1.05rem", sm: "1.15rem" },
-                                    color: "#3f51b5",
+                                    color: "#1976d2",
                                     mb: 1
                                 }}
                             >
@@ -377,7 +376,7 @@ function ToyPage(props) {
                     <Box sx={{
                         width: "100%",
                         height: 32,
-                        background: "#7C4DFF",
+                        background: "#2196F3",
                         backgroundImage: kazakhPattern,
                         backgroundRepeat: "repeat-x",
                         backgroundSize: "120px",

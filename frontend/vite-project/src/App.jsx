@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Container, Typography, Paper, Box, Button, Grid, Stack } from "@mui/material";
 import SEO from "./component/SEO";
 import CelebrationIcon from '@mui/icons-material/Celebration';
@@ -15,12 +15,12 @@ import HeaderHome from "./component/HeaderHome";
 // --- Новый современный и адаптивный HomePage ---
 function HomePage() {
   const typesofholiday = [
-    { name: "Үйлену той", icon: <FavoriteIcon sx={{ color: "#e91e63" }} /> },
-    { name: "Ұзату той", icon: <CelebrationIcon sx={{ color: "#7C4DFF" }} /> },
-    { name: "Беташар", icon: <EmojiEmotionsIcon sx={{ color: "#ffb300" }} /> },
-    { name: "Сүндет той", icon: <ChildCareIcon sx={{ color: "#00bcd4" }} /> },
-    { name: "Тұсаукесер", icon: <Diversity3Icon sx={{ color: "#43a047" }} /> },
-    { name: "Мерей той", icon: <StarIcon sx={{ color: "#ff9800" }} /> },
+    { name: "Үйлену той", icon: <FavoriteIcon sx={{ color: "#03A9F4" }} /> ,link: "/weddings" },
+    { name: "Ұзату той", icon: <CelebrationIcon sx={{ color: "#2196F3" }} /> ,link: "/uzatus" },
+    { name: "Беташар", icon: <EmojiEmotionsIcon sx={{ color: "#03A9F4" }} /> ,link: "/betashar" },
+    { name: "Сүндет той", icon: <ChildCareIcon sx={{ color: "#2196F3" }} /> ,link: "/sundet" },
+    { name: "Тұсаукесер", icon: <Diversity3Icon sx={{ color: "#03A9F4" }} /> ,link: "/tkesers" },
+    { name: "Мерей той", icon: <StarIcon sx={{ color: "#2196F3" }} /> ,link: "/merey" },
   ];
 
   const features = [
@@ -36,7 +36,7 @@ function HomePage() {
       sx={{
         minHeight: "100vh",
         minWidth: "100vw",
-        background: "linear-gradient(135deg, #F3E5F5 0%, #7C4DFF 100%)",
+        background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
         position: "relative",
         overflow: "auto",
         pb: { xs: 10, md: 0 },
@@ -58,9 +58,9 @@ function HomePage() {
           sx={{
             width: "100%",
             borderRadius: 5,
-            background: "linear-gradient(120deg, #fff 60%, #ede7f6 100%)",
-            boxShadow: "0 8px 32px 0 rgba(124,77,255,0.10)",
-            color: "#5e35b1",
+            background: "rgba(33,150,243,0.06)",
+            boxShadow: "0 8px 32px 0 rgba(33,150,243,0.10)",
+            color: "#1565c0",
             textAlign: "center",
             p: { xs: 2, sm: 4, md: 6 },
             mb: { xs: 3, md: 6 },
@@ -68,15 +68,14 @@ function HomePage() {
             overflow: "hidden",
           }}
         >
-          <CelebrationIcon sx={{ fontSize: { xs: 48, md: 72 }, color: "#7C4DFF", mb: 2 }} />
+          <CelebrationIcon sx={{ fontSize: { xs: 48, md: 72 }, color: "#03A9F4", mb: 2 }} />
           <Typography
             variant="h2"
             sx={{
               fontWeight: "bold",
-              fontFamily: "Edu QLD Hand, cursive",
               fontSize: { xs: "2rem", sm: "2.5rem", md: "3.2rem" },
               mb: 2,
-              color: "#5e35b1",
+              color: "#1565c0",
               letterSpacing: 1,
             }}
           >
@@ -86,7 +85,7 @@ function HomePage() {
             variant="h5"
             sx={{
               mb: 2,
-              color: "#7C4DFF",
+              color: "#2196F3",
               fontWeight: 500,
               fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" },
             }}
@@ -105,16 +104,16 @@ function HomePage() {
               size="large"
               startIcon={<WhatsAppIcon />}
               sx={{
-                background: "linear-gradient(90deg, #7C4DFF 0%, #B388FF 100%)",
+                background: "linear-gradient(90deg, #2196F3 0%, #03A9F4 100%)",
                 color: "#fff",
                 fontWeight: "bold",
                 borderRadius: 3,
                 px: 4,
                 py: 1.5,
                 fontSize: { xs: "1rem", sm: "1.1rem" },
-                boxShadow: "0 2px 8px #7C4DFF44",
+                boxShadow: "0 2px 8px #2196F344",
                 "&:hover": {
-                  background: "linear-gradient(90deg, #B388FF 0%, #7C4DFF 100%)",
+                  background: "linear-gradient(90deg, #03A9F4 0%, #2196F3 100%)",
                   color: "#fff",
                 },
               }}
@@ -127,17 +126,17 @@ function HomePage() {
               variant="outlined"
               size="large"
               sx={{
-                borderColor: "#7C4DFF",
-                color: "#7C4DFF",
+                borderColor: "#03A9F4",
+                color: "#2196F3",
                 fontWeight: "bold",
                 borderRadius: 3,
                 px: 4,
                 py: 1.5,
                 fontSize: { xs: "1rem", sm: "1.1rem" },
                 "&:hover": {
-                  background: "#ede7f6",
-                  borderColor: "#B388FF",
-                  color: "#5e35b1",
+                  background: "rgba(33,150,243,0.06)",
+                  borderColor: "#2196F3",
+                  color: "#1565c0",
                 },
               }}
               href="#features"
@@ -153,7 +152,7 @@ function HomePage() {
             variant="h5"
             sx={{
               fontWeight: "bold",
-              color: "#7C4DFF",
+              color: "#2196F3",
               mb: 2,
               textAlign: "center",
               fontSize: { xs: "1.2rem", sm: "1.5rem" },
@@ -165,7 +164,8 @@ function HomePage() {
           <Grid container spacing={2} justifyContent="center">
             {typesofholiday.map((type, idx) => (
               <Grid item xs={6} sm={4} md={2} key={type.name}>
-                <Paper
+                <Link to={type.link} style={{ textDecoration: "none" }}>
+                  <Paper
                   elevation={3}
                   sx={{
                     display: "flex",
@@ -175,8 +175,8 @@ function HomePage() {
                     px: 1,
                     py: 2,
                     borderRadius: 4,
-                    background: "rgba(124,77,255,0.08)",
-                    color: "#7C4DFF",
+                    background: "rgba(33,150,243,0.06)",
+                    color: "#2196F3",
                     fontWeight: "bold",
                     fontSize: { xs: "1rem", sm: "1.1rem" },
                     minWidth: 80,
@@ -187,6 +187,7 @@ function HomePage() {
                   {type.icon}
                   <span style={{ fontSize: "1rem", wordBreak: "break-word" }}>{type.name}</span>
                 </Paper>
+                </Link>
               </Grid>
             ))}
           </Grid>
@@ -198,7 +199,7 @@ function HomePage() {
             variant="h5"
             sx={{
               fontWeight: "bold",
-              color: "#5e35b1",
+              color: "#2196F3",
               mb: 2,
               textAlign: "center",
               fontSize: { xs: "1.2rem", sm: "1.5rem" },
@@ -215,16 +216,16 @@ function HomePage() {
                     display: "flex",
                     alignItems: "center",
                     gap: 1,
-                    background: "rgba(124,77,255,0.06)",
+                    background: "rgba(33,150,243,0.06)",
                     borderRadius: 3,
                     p: 2,
                   }}
                 >
-                  <CheckCircleIcon sx={{ color: "#B388FF" }} />
+                  <CheckCircleIcon sx={{ color: "#03A9F4" }} />
                   <Typography
                     variant="body1"
                     sx={{
-                      color: "#5e35b1",
+                      color: "#1565c0",
                       fontSize: { xs: "1rem", sm: "1.1rem" },
                       fontWeight: 500,
                     }}
@@ -243,9 +244,9 @@ function HomePage() {
           sx={{
             width: "100%",
             borderRadius: 5,
-            background: "linear-gradient(90deg, #7C4DFF22 0%, #B388FF22 100%)",
-            boxShadow: "0 4px 24px 0 rgba(124,77,255,0.10)",
-            color: "#7C4DFF",
+            background: "linear-gradient(90deg, #2196F322 0%, #03A9F422 100%)",
+            boxShadow: "0 4px 24px 0 rgba(33,150,243,0.10)",
+            color: "#2196F3",
             textAlign: "center",
             p: { xs: 2, sm: 4 },
             mb: { xs: 2, md: 4 },
@@ -254,12 +255,11 @@ function HomePage() {
           <Typography
             variant="h4"
             sx={{
-              fontFamily: "Edu QLD Hand, cursive",
               fontWeight: "bold",
-              color: "#7C4DFF",
+              color: "#2196F3",
               fontSize: { xs: "1.3rem", sm: "2rem", md: "2.5rem" },
               letterSpacing: 2,
-              textShadow: "0 4px 24px #fff, 0 2px 8px #7C4DFF88",
+              textShadow: "0 4px 24px #fff, 0 2px 8px #2196F388",
               mb: 1,
               wordBreak: "break-word"
             }}
@@ -269,7 +269,7 @@ function HomePage() {
           <Typography
             variant="body1"
             sx={{
-              color: "#5e35b1",
+              color: "#1565c0",
               fontSize: { xs: "1rem", sm: "1.1rem" },
               mb: 2,
             }}
@@ -280,16 +280,16 @@ function HomePage() {
             variant="contained"
             size="large"
             sx={{
-              background: "linear-gradient(90deg, #7C4DFF 0%, #B388FF 100%)",
+              background: "linear-gradient(90deg, #2196F3 0%, #03A9F4 100%)",
               color: "#fff",
               fontWeight: "bold",
               borderRadius: 3,
               px: 4,
               py: 1.5,
               fontSize: { xs: "1rem", sm: "1.1rem" },
-              boxShadow: "0 2px 8px #7C4DFF44",
+              boxShadow: "0 2px 8px #2196F344",
               "&:hover": {
-                background: "linear-gradient(90deg, #B388FF 0%, #7C4DFF 100%)",
+                background: "linear-gradient(90deg, #03A9F4 0%, #2196F3 100%)",
                 color: "#fff",
               },
             }}
@@ -309,19 +309,18 @@ function HomePage() {
           zIndex: 1300,
           textAlign: "center",
           py: { xs: 1, md: 2 },
-          background: "linear-gradient(90deg, #7C4DFF22 0%, #B388FF22 100%)",
+          background: "rgba(33,150,243,0.06)",
           backdropFilter: "blur(2px)",
         }}
       >
         <Typography
           variant="h2"
           sx={{
-            fontFamily: "Edu QLD Hand, cursive",
             fontWeight: "bold",
-            color: "#7C4DFF",
+            color: "#2196F3",
             fontSize: { xs: "1.1rem", sm: "2rem", md: "3rem", lg: "3.5rem" },
             letterSpacing: 2,
-            textShadow: "0 4px 24px #fff, 0 2px 8px #7C4DFF88",
+            textShadow: "0 4px 24px #fff, 0 2px 8px #2196F388",
             mb: 0,
             wordBreak: "break-word"
           }}

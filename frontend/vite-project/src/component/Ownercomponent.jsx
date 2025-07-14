@@ -12,7 +12,7 @@ const Ownercomponent  = (props) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`${process.env.BASED_URL}/api/${props.link}/${props.id}`)
+        axios.get(`https://weddingproduct22.onrender.com/api/${props.link}/${props.id}`)
         .then(res => {
             setWedding(res.data);
             setLoading(false);
@@ -22,7 +22,7 @@ const Ownercomponent  = (props) => {
             setLoading(false);
         });
 
-        axios.get(`${process.env.BASED_URL}/api/${props.link}/${props.id}/guest-count`)
+        axios.get(`https://weddingproduct22.onrender.com/api/${props.link}/${props.id}/guest-count`)
             .then(res => setGuestCount(res.data.guestCount))
             .catch(err => console.error(err));
     }, [props.id,props.link]);
@@ -42,20 +42,20 @@ const Ownercomponent  = (props) => {
                  className='paper'
                  sx={{p:4,
                     borderRadius:3,
-                    background:"linear-gradient(135deg, #FFDEE9 0%,#B5FFFC 100%)"}}
+                    background:"rgba(33,150,243,0.06)"}}
             >
-                <Typography variant="h6" sx={{ mt: 3, color: 'red', fontWeight: 'bold' }}>Қонақтар саны: {guestCount}</Typography>
+                <Typography variant="h6" sx={{ mt: 3, color: '#1565c0', fontWeight: 'bold' }}>{`Қонақтар саны: ${guestCount}`}</Typography>
 
-<Typography variant="h6" sx={{ mt: 3, color: 'red', fontWeight: 'bold' }}>Отбасылар мен Қонақтар:</Typography>
+<Typography variant="h6" sx={{ mt: 3, color: '#1565c0', fontWeight: 'bold' }}>{`Отбасылар мен қонақтар:`}</Typography>
 
 {wedding.families.length === 0 ? (
     <Typography>Әлі ешкім жоқ</Typography>
 ) : (
     <List>
         {wedding.families.map((family, index) => (
-            <Card elevation={4} sx={{ mt: 2, borderRadius: 3, bgcolor: 'rgb(230, 213, 219)' }} key={index}>
+            <Card elevation={4} sx={{ mt: 2, borderRadius: 3, bgcolor: 'rgba(33,150,243,0.06)' }} key={index}>
                 <CardContent>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{family.familyName}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2196F3' }}>{family.familyName}</Typography>
                     <List>
                         {family.guests.map((guest, i) => (
                             <ListItem key={i}>
@@ -63,7 +63,7 @@ const Ownercomponent  = (props) => {
                             </ListItem>
                         ))}
                     </List>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#e91e63'}}>{family.wish}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#03A9F4'}}>{family.wish}</Typography>
                 </CardContent>
             </Card>
         ))}

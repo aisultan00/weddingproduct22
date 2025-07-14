@@ -49,11 +49,11 @@ function HeaderHome() {
       position="static"
       elevation={10}
       sx={{
-        background: "linear-gradient(90deg, #fff8e1 0%, #b388ff 100%)",
-        color: "#5e35b1",
+        background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
+        color: "#1565c0",
         mb: 1,
         borderRadius: 4,
-        boxShadow: "0 4px 24px 0 rgba(124,77,255,0.15)",
+        boxShadow: "0 4px 24px 0 rgba(33,150,243,0.10)",
         px: { xs: 1, sm: 2 },
       }}
     >
@@ -75,15 +75,14 @@ function HeaderHome() {
             flexShrink: 0,
           }}
         >
-          <CelebrationIcon sx={{ color: "#7C4DFF", fontSize: 38 }} />
+          <CelebrationIcon sx={{ color: "#03A9F4", fontSize: 38 }} />
           <Typography
             variant="h5"
             sx={{
               fontWeight: "bold",
-              color: "#5e35b1",
+              color: "#2196F3",
               letterSpacing: 1,
-              fontFamily: "Edu QLD Hand, cursive",
-              textShadow: "0 2px 8px #fff8",
+              textShadow: "0 2px 8px #fff",
               fontSize: { xs: "1.1rem", sm: "1.5rem", md: "2rem" },
               userSelect: "none"
             }}
@@ -101,37 +100,37 @@ function HeaderHome() {
               to="/"
               sx={{
                 fontWeight: "bold",
-                color: "#5e35b1",
+                color: "#2196F3",
                 background: "rgba(255,255,255,0.8)",
                 borderRadius: 3,
                 px: 3,
                 py: 1,
                 fontSize: "1.05rem",
-                boxShadow: "0 2px 8px #b388ff33",
+                boxShadow: "0 2px 8px #2196F333",
                 "&:hover": {
-                  background: "#ede7f6",
-                  color: "#7C4DFF",
+                  background: "#e3f2fd",
+                  color: "#03A9F4",
                 },
               }}
             >
-              <HouseIcon sx={{ mr: 1 }} /> Басты бет
+              <HouseIcon sx={{ mr: 1, color: "#03A9F4" }} /> Басты бет
             </Button>
             <Button
               color="inherit"
-              endIcon={<ArrowDropDownIcon />}
+              endIcon={<ArrowDropDownIcon sx={{ color: "#03A9F4" }} />}
               onClick={handleMenuOpen}
               sx={{
                 fontWeight: "bold",
-                color: "#5e35b1",
+                color: "#2196F3",
                 background: "rgba(255,255,255,0.8)",
                 borderRadius: 3,
                 px: 3,
                 py: 1,
                 fontSize: "1.05rem",
-                boxShadow: "0 2px 8px #b388ff33",
+                boxShadow: "0 2px 8px #2196F333",
                 "&:hover": {
-                  background: "#ede7f6",
-                  color: "#7C4DFF",
+                  background: "#e3f2fd",
+                  color: "#03A9F4",
                 },
               }}
             >
@@ -159,11 +158,11 @@ function HeaderHome() {
                   onClick={handleMenuClose}
                   sx={{
                     fontWeight: "bold",
-                    color: "#5e35b1",
+                    color: "#2196F3",
                     fontSize: "1rem",
                     "&:hover": {
-                      background: "#ede7f6",
-                      color: "#7C4DFF",
+                      background: "#e3f2fd",
+                      color: "#03A9F4",
                     },
                   }}
                 >
@@ -184,10 +183,10 @@ function HeaderHome() {
               onClick={handleDrawerToggle}
               sx={{
                 ml: 1,
-                color: "#7C4DFF",
+                color: "#03A9F4",
                 background: "rgba(255,255,255,0.7)",
                 borderRadius: 2,
-                boxShadow: "0 2px 8px #b388ff33",
+                boxShadow: "0 2px 8px #2196F333",
               }}
             >
               <MenuIcon />
@@ -199,23 +198,23 @@ function HeaderHome() {
               PaperProps={{
                 sx: {
                   width: 240,
-                  background: "linear-gradient(120deg, #fff8e1 20%, #b388ff 100%)",
-                  color: "#5e35b1",
+                  background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
+                  color: "#1565c0",
                   p: 2,
                 }
               }}
             >
               <Box sx={{ mb: 2, display: "flex", alignItems: "center", gap: 1 }}>
-                <CelebrationIcon sx={{ color: "#7C4DFF" }} />
-                <Typography variant="h6" fontWeight="bold" sx={{ fontFamily: "Edu QLD Hand, cursive" }}>
+                <CelebrationIcon sx={{ color: "#03A9F4" }} />
+                <Typography variant="h6" fontWeight="bold" sx={{ color: "#2196F3" }}>
                   Той жүйесі
                 </Typography>
               </Box>
               <Divider sx={{ mb: 1 }} />
               <List>
                 <ListItem button component={Link} to="/" onClick={handleDrawerToggle}>
-                  <HouseIcon sx={{ mr: 1 }} />
-                  <ListItemText primary="Басты бет" />
+                  <HouseIcon sx={{ mr: 1, color: "#03A9F4" }} />
+                  <ListItemText primary="Басты бет" sx={{ color: "#2196F3" }} />
                 </ListItem>
                 <Divider sx={{ my: 1 }} />
                 {typesofholiday.map((type, idx) => (
