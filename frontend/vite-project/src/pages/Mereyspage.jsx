@@ -10,7 +10,6 @@ import kk from 'date-fns/locale/kk'; // или 'ru' для русского
 import ToyPage from "../component/ToyPage";
 import SEO from "../component/SEO";
 function Mereyspage() {
-    const [weddings, setWeddings] = useState([]);
     const [person, setPerson] = useState("");
     const [age , setAge] = useState("");
     const [date, setDate] = useState("");
@@ -41,12 +40,6 @@ function Mereyspage() {
         setimageErrors(null)
     };
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/merey")
-            .then(res => setWeddings(res.data))
-            .catch(err => console.error(err));
-    }, []);
-
     const addWedding = () => {
         setWasSubmitted(true);
 
@@ -76,7 +69,7 @@ function Mereyspage() {
     const handleStripePay = async () => {
         setIsPaying(true);
         try {
-            const res = await axios.post("http://localhost:5000/api/merey/create-checkout-session", {
+            const res = await axios.post(`${process.env.BASED_URL}/api/merey/create-checkout-session`, {
                 person: demoMerey.person,
                 age: demoMerey.age,
                 desire: demoMerey.desire,

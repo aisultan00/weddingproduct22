@@ -23,11 +23,11 @@ function ToyPage(props) {
 
     useEffect(() => {
         if (props.demo) return;
-        axios.get(`http://localhost:5000/api/${props.toytype}/${props.id}`)
+        axios.get(`${process.env.BASED_URL}/api/${props.toytype}/${props.id}`)
             .then(res => setWedding(res.data))
             .catch(err => console.error(err));
 
-        axios.get(`http://localhost:5000/api/${props.toytype}/${props.id}/guest-count`)
+        axios.get(`${process.env.BASED_URL}/api/${props.toytype}/${props.id}/guest-count`)
             .then(res => setGuestCount(res.data.guestCount))
             .catch(err => console.error(err));
     }, [props.id, props.toytype, props.demo]);

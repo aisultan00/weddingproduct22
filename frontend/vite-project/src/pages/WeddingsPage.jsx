@@ -68,7 +68,7 @@ function WeddingsPage() {
     const handleStripePay = async () => {
         setIsPaying(true);
         try {
-            const res = await axios.post("http://localhost:5000/api/wedding/create-checkout-session", {
+            const res = await axios.post(`${process.env.BASED_URL}/api/wedding/create-checkout-session`, {
                 groom: demoWedding.groom,
                 bride: demoWedding.bride,
                 desire: demoWedding.desire,

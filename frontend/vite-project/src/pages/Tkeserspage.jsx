@@ -10,7 +10,6 @@ import kk from 'date-fns/locale/kk'; // или 'ru' для русского
 import ToyPage from "../component/ToyPage";
 import SEO from "../component/SEO";
 function Tkeserspage() {
-    const [weddings, setWeddings] = useState([]);
     const [toddler, setToddler] = useState("");
     const [date, setDate] = useState("");
     const [desire, setDesire] = useState("");
@@ -40,11 +39,6 @@ function Tkeserspage() {
     const [demoTkesers, setDemoTkesers] = useState(null);
     const [isPaying, setIsPaying] = useState(false);
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/tkesers")
-            .then(res => setWeddings(res.data))
-            .catch(err => console.error(err));
-    }, []);
 
     const addWedding = () => {
         setWasSubmitted(true);
@@ -75,7 +69,7 @@ function Tkeserspage() {
     const handleStripePay = async () => {
         setIsPaying(true);
         try {
-            const res = await axios.post("http://localhost:5000/api/tkesers/create-checkout-session", {
+            const res = await axios.post(`${process.env.BASED_URL}/api/tkesers/create-checkout-session`, {
                 toddler: demoTkesers.toddler,
                 desire: demoTkesers.desire,
                 date: demoTkesers.date,

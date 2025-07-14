@@ -12,7 +12,7 @@ const Ownercomponent  = (props) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/${props.link}/${props.id}`)
+        axios.get(`${process.env.BASED_URL}/api/${props.link}/${props.id}`)
         .then(res => {
             setWedding(res.data);
             setLoading(false);
@@ -22,7 +22,7 @@ const Ownercomponent  = (props) => {
             setLoading(false);
         });
 
-        axios.get(`http://localhost:5000/api/${props.link}/${props.id}/guest-count`)
+        axios.get(`${process.env.BASED_URL}/api/${props.link}/${props.id}/guest-count`)
             .then(res => setGuestCount(res.data.guestCount))
             .catch(err => console.error(err));
     }, [props.id,props.link]);

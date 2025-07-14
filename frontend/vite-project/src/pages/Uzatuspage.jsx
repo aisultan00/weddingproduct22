@@ -11,7 +11,6 @@ import ToyPage from "../component/ToyPage";
 import SEO from "../component/SEO";
 
 function Uzatuspage() {
-     const [weddings, setWeddings] = useState([]);
     const [groom, setGroom] = useState("");
     const [date, setDate] = useState("");
     const [desire, setDesire] = useState("");
@@ -41,12 +40,6 @@ function Uzatuspage() {
         setimageErrors(null)
     };
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/uzatus")
-            .then(res => setWeddings(res.data))
-            .catch(err => console.error(err));
-    }, []);
-
     const addWedding = () => {
         setWasSubmitted(true);
 
@@ -74,7 +67,7 @@ function Uzatuspage() {
     const handleStripePay = async () => {
         setIsPaying(true);
         try {
-            const res = await axios.post("http://localhost:5000/api/uzatus/create-checkout-session", {
+            const res = await axios.post(`${process.env.BASED_URL}/api/uzatus/create-checkout-session`, {
                 groom: demoUzatus.groom,
                 desire: demoUzatus.desire,
                 date: demoUzatus.date,

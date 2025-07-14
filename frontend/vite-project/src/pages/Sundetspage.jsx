@@ -10,7 +10,6 @@ import kk from 'date-fns/locale/kk'; // или 'ru' для русского
 import ToyPage from "../component/ToyPage";
 import SEO from "../component/SEO";
 function Sundetspage() {
-    const [weddings, setWeddings] = useState([]);
     const [toddler, setToddler] = useState("");
     const [date, setDate] = useState("");
     const [desire, setDesire] = useState("");
@@ -25,12 +24,6 @@ function Sundetspage() {
      const [showDemo, setShowDemo] = useState(false);
      const [demoSundet, setDemoSundet] = useState(null);
      const [isPaying, setIsPaying] = useState(false);
-
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/sundet")
-            .then(res => setWeddings(res.data))
-            .catch(err => console.error(err));
-    }, []);
 
 const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -73,7 +66,7 @@ const handleImageUpload = (e) => {
     const handleStripePay = async () => {
         setIsPaying(true);
         try {
-            const res = await axios.post("http://localhost:5000/api/sundet/create-checkout-session", {
+            const res = await axios.post(`${process.env.BASED_URL}/api/sundet/create-checkout-session`, {
                 toddler: demoSundet.toddler,
                 desire: demoSundet.desire,
                 date: demoSundet.date,

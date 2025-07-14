@@ -10,7 +10,6 @@ import kk from 'date-fns/locale/kk';
 import ToyPage from "../component/ToyPage";
 import SEO from "../component/SEO";
 function Betasharspage() {
-    const [weddings, setWeddings] = useState([]);
     const [groom, setGroom] = useState("");
     const [date, setDate] = useState("");
     const [desire, setDesire] = useState("");
@@ -28,11 +27,6 @@ function Betasharspage() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/betashar")
-            .then(res => setWeddings(res.data))
-            .catch(err => console.error(err));
-    }, []);
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -79,7 +73,7 @@ function Betasharspage() {
     const handleStripePay = async () => {
         setIsPaying(true);
         try {
-            const res = await axios.post("http://localhost:5000/api/betashar/create-checkout-session", {
+            const res = await axios.post(`${process.env.BASED_URL}/api/betashar/create-checkout-session`, {
                 kelin: demoBetashar.kelin,
                 desire: demoBetashar.desire,
                 date: demoBetashar.date,

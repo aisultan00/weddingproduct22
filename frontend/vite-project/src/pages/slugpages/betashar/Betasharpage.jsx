@@ -11,7 +11,7 @@ function Betasharpage() {
          title="Беташар тойы"
          description="Беташар тойының онлайн шақыруы. Қонақтарды шақырыңыз және тойды ұйымдастырыңыз."
          keywords="беташар тойы, онлайн шақыру, қонақтар, той"
-       />
+       />f
        <Toypage id={id}
                 toytype="betashar"
        />
