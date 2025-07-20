@@ -177,7 +177,7 @@ function AdminPage() {
         setError("");
 
         try {
-            const endpoint = `https://weddingproduct22.onrender.com/api/${toyType}/create-checkout-session`;
+            const endpoint = `https://weddingproduct22-1.onrender.com/api/${toyType}/create-checkout-session`;
             
             // Prepare data based on toy type
             let requestData = {
@@ -213,6 +213,7 @@ function AdminPage() {
             const response = await axios.post(endpoint, requestData);
             
             setSuccess(`Той сәтті жасалды! Сілтеме: ${response.data.url}`);
+            window.open(response.data.url, '_blank');
             
             // Reset form
             setTimeout(() => {

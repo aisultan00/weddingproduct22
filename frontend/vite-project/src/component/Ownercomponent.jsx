@@ -12,7 +12,7 @@ const Ownercomponent  = (props) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`https://weddingproduct22.onrender.com/api/${props.link}/${props.id}`)
+        axios.get(`https://weddingproduct22-1.onrender.com/api/${props.link}/${props.id}`)
         .then(res => {
             setWedding(res.data);
             setLoading(false);
@@ -22,7 +22,7 @@ const Ownercomponent  = (props) => {
             setLoading(false);
         });
 
-        axios.get(`https://weddingproduct22.onrender.com/api/${props.link}/${props.id}/guest-count`)
+        axios.get(`https://weddingproduct22-1.onrender.com/api/${props.link}/${props.id}/guest-count`)
             .then(res => setGuestCount(res.data.guestCount))
             .catch(err => console.error(err));
     }, [props.id,props.link]);
