@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
@@ -23,7 +23,7 @@ function Sundetspage() {
 
      const [showDemo, setShowDemo] = useState(false);
      const [demoSundet, setDemoSundet] = useState(null);
-     const [isPaying, setIsPaying] = useState(false);
+ 
 
 const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -63,22 +63,19 @@ const handleImageUpload = (e) => {
         });
         setShowDemo(true);
     };
-    const handleStripePay = async () => {
-        setIsPaying(true);
-        try {
-            const res = await axios.post(`https://weddingproduct22.onrender.com/api/sundet/create-checkout-session`, {
-                toddler: demoSundet.toddler,
-                desire: demoSundet.desire,
-                date: demoSundet.date,
-                location: demoSundet.location,
-                representatives: demoSundet.representatives,
-                image: demoSundet.image
-            });
-            window.location.href = res.data.url;
-        } catch (err) {
-            setIsPaying(false);
-            alert("Қате! Төлем сессиясын бастау мүмкін болмады.");
-        }
+    const handleWhatsApp = () => {
+        const message = `Сәлем! Мен сүндет тойы жасағымы келеді:
+
+👶 Бала аты: ${demoSundet.toddler}
+💬 Шақырту сөзі: ${demoSundet.desire}
+📅 Той уақыты: ${new Date(demoSundet.date).toLocaleDateString('kk-KZ')} ${new Date(demoSundet.date).toLocaleTimeString('kk-KZ', {hour: '2-digit', minute:'2-digit'})}
+📍 Той жері: ${demoSundet.location}
+👥 Той иелері: ${demoSundet.representatives}
+
+Тойды жариялау үшін қанша төлеу керек?`;
+        
+        const whatsappUrl = `https://wa.me/77001234567?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
     };
 
     // Демо страница с оплатой Stripe
@@ -87,8 +84,7 @@ const handleImageUpload = (e) => {
         <ToyPage
             {...demoSundet}
             demo={true}
-            onPay={handleStripePay}
-            isPaying={isPaying}
+            onWhatsApp={handleWhatsApp}
             toytype="sundet"
         />
     );

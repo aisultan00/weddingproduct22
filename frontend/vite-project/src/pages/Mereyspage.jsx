@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
@@ -24,7 +24,7 @@ function Mereyspage() {
 
      const [showDemo, setShowDemo] = useState(false);
      const [demoMerey, setDemoMerey] = useState(null);
-     const [isPaying, setIsPaying] = useState(false);
+ 
 
    const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -66,23 +66,20 @@ function Mereyspage() {
         });
         setShowDemo(true);
     };
-    const handleStripePay = async () => {
-        setIsPaying(true);
-        try {
-            const res = await axios.post(`https://weddingproduct22.onrender.com/api/merey/create-checkout-session`, {
-                person: demoMerey.person,
-                age: demoMerey.age,
-                desire: demoMerey.desire,
-                date: demoMerey.date,
-                location: demoMerey.location,
-                representatives: demoMerey.representatives,
-                image: demoMerey.image
-            });
-            window.location.href = res.data.url;
-        } catch (err) {
-            setIsPaying(false);
-            alert("Қате! Төлем сессиясын бастау мүмкін болмады.");
-        }
+    const handleWhatsApp = () => {
+        const message = `Сәлем! Мен мерей тойы жасағымы келеді:
+
+🎂 Мерей той иесі: ${demoMerey.person}
+🎈 Жасы: ${demoMerey.age} жас
+💬 Шақырту сөзі: ${demoMerey.desire}
+📅 Той уақыты: ${new Date(demoMerey.date).toLocaleDateString('kk-KZ')} ${new Date(demoMerey.date).toLocaleTimeString('kk-KZ', {hour: '2-digit', minute:'2-digit'})}
+📍 Той жері: ${demoMerey.location}
+👥 Той иелері: ${demoMerey.representatives}
+
+Тойды жариялау үшін қанша төлеу керек?`;
+        
+        const whatsappUrl = `https://wa.me/77001234567?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
     };
 
     // Демо страница с оплатой Stripe
@@ -91,8 +88,7 @@ function Mereyspage() {
         <ToyPage
             {...demoMerey}
             demo={true}
-            onPay={handleStripePay}
-            isPaying={isPaying}
+            onWhatsApp={handleWhatsApp}
             toytype="merey"
         />
     );

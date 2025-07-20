@@ -358,16 +358,24 @@ function ToyPage(props) {
                         {props.demo && (
                             <Box sx={{ mt: 3, textAlign: "center" }}>
                                 <Typography color="warning.main" sx={{ mb: 2 }}>
-                                    Бұл демо-нұсқа. Тойды жариялау үшін төлем жасаңыз.
+                                    Бұл демо-нұсқа. Тойды жариялау үшін WhatsApp арқылы хабарласыңыз.
                                 </Typography>
                                 <Button
                                     variant="contained"
                                     color="success"
-                                    onClick={props.onPay}
-                                    disabled={props.isPaying}
-                                    sx={{ fontWeight: "bold", fontSize: "1.1rem", px: 4, py: 1.5 }}
+                                    onClick={props.onWhatsApp}
+                                    sx={{ 
+                                        fontWeight: "bold", 
+                                        fontSize: "1.1rem", 
+                                        px: 4, 
+                                        py: 1.5,
+                                        background: "#25D366",
+                                        "&:hover": {
+                                            background: "#128C7E"
+                                        }
+                                    }}
                                 >
-                                    {props.isPaying ? "Төлем өңделуде..." : "Тойды төлеу және жариялау"}
+                                    WhatsApp арқылы хабарласу
                                 </Button>
                             </Box>
                         )}

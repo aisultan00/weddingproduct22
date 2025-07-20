@@ -351,6 +351,7 @@ import GuestsMerey from "./pages/slugpages/merey/GuestsMerey";
 import Uzatuspage from "./pages/Uzatuspage";
 import Uzatupage from "./pages/slugpages/uzatu/Uzatupage";
 import GuestsUzatu from "./pages/slugpages/uzatu/GuestsUzatu";
+import AdminPage from "./pages/AdminPage";
 import NotfoundPage from "./component/NotfoundPage";
 
 function App() {
@@ -382,6 +383,7 @@ function App() {
         <Route path="/uzatus" element={<Uzatuspage />} />
         <Route path="/uzatus/:id" element={<Uzatupage />} />
         <Route path="/uzatus/:id/Ownerpage" element={<GuestsUzatu />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<NotfoundPage />} />
       </Routes>
     </Router>

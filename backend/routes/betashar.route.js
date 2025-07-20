@@ -1,10 +1,7 @@
 import express from "express";
 import cloudinary from '../cloudinary.js';
 import Betashar from "../models/BetasharSchema.model.js";
-import Stripe from "stripe";
 import { body, param, validationResult } from 'express-validator';
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const router = express.Router();
 
@@ -105,39 +102,12 @@ router.post('/create-checkout-session',
       image: imageUrl,
     });
 
-    await newBetashar.save(); // MongoDB _id теперь доступен
+    await newBetashar.save();
 
-    const amount = 500000; // в тыйын (5000 тг)
-
-    // 2. Создаём Stripe сессию
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [{
-        price_data: {
-          currency: 'kzt',
-          product_data: {
-            name: `Беташар: ${kelin}`,
-            description: desire,
-          },
-          unit_amount: amount,
-        },
-        quantity: 1,
-      }],
-      mode: 'payment',
-      success_url: `${process.env.FRONTEND_URL}/betashar/${newBetashar._id}`,
-      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
-      metadata: {
-        type: 'betashar',
-        ToyId: newBetashar._id.toString(),
-      },
-    });
-
-    // 3. Обновляем betashar с session ID
-
-    res.json({ url: session.url });
+    res.json({ url: `${process.env.FRONTEND_URL}/betashar/${newBetashar._id}` });
   } catch (err) {
     console.error('Ошибка создания беташара:', err);
-    res.status(500).json({ error: 'Ошибка оплаты', details: err.message });
+    res.status(500).json({ error: 'Ошибка создания беташара', details: err.message });
   }
 });
 

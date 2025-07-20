@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
@@ -24,7 +24,7 @@ function Uzatuspage() {
 
     const [showDemo, setShowDemo] = useState(false);
     const [demoUzatus, setDemoUzatus] = useState(null);
-    const [isPaying, setIsPaying] = useState(false);
+
 
    const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -64,22 +64,19 @@ function Uzatuspage() {
         });
         setShowDemo(true);
     };
-    const handleStripePay = async () => {
-        setIsPaying(true);
-        try {
-            const res = await axios.post(`https://weddingproduct22.onrender.com/api/uzatus/create-checkout-session`, {
-                groom: demoUzatus.groom,
-                desire: demoUzatus.desire,
-                date: demoUzatus.date,
-                location: demoUzatus.location,
-                representatives: demoUzatus.representatives,
-                image: demoUzatus.image
-            });
-            window.location.href = res.data.url;
-        } catch (err) {
-            setIsPaying(false);
-            alert("Қате! Төлем сессиясын бастау мүмкін болмады.");
-        }
+    const handleWhatsApp = () => {
+        const message = `Сәлем! Мен ұзату тойы жасағымы келеді:
+
+👰 Қыздың аты: ${demoUzatus.groom}
+💬 Шақырту сөзі: ${demoUzatus.desire}
+📅 Той уақыты: ${new Date(demoUzatus.date).toLocaleDateString('kk-KZ')} ${new Date(demoUzatus.date).toLocaleTimeString('kk-KZ', {hour: '2-digit', minute:'2-digit'})}
+📍 Той жері: ${demoUzatus.location}
+👥 Той иелері: ${demoUzatus.representatives}
+
+Тойды жариялау үшін қанша төлеу керек?`;
+        
+        const whatsappUrl = `https://wa.me/77001234567?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
     };
 
     // Демо страница с оплатой Stripe
@@ -88,8 +85,7 @@ function Uzatuspage() {
         <ToyPage
             {...demoUzatus}
             demo={true}
-            onPay={handleStripePay}
-            isPaying={isPaying}
+            onWhatsApp={handleWhatsApp}
             toytype="uzatus"
         />
     );

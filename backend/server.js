@@ -8,7 +8,7 @@ import SundetRoutes from "./routes/sundet.route.js"
 import BetasharRoutes from "./routes/betashar.route.js"
 import MereyRoutes from "./routes/merey.route.js"
 import TkesersRoutes from "./routes/tusaukeser.route.js"
-import stripeWebhookRouter from "./routes/stripe.webhook.js";
+
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 dotenv.config();
@@ -27,7 +27,7 @@ app.use(limiter);
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.log(err));
-app.use('/api/stripe', stripeWebhookRouter);
+
 app.use("/api/wedding", WeddingRoutes);
 app.use("/api/uzatus", UzatuRoutes);
 app.use("/api/sundet", SundetRoutes);

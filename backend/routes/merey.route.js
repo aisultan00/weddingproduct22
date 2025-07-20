@@ -1,10 +1,7 @@
 import express from "express";
 import cloudinary from '../cloudinary.js';
 import Merey from "../models/MereySchema.model.js";
-import Stripe from "stripe";
 import { body, param, validationResult } from 'express-validator';
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const router = express.Router();
 
@@ -106,35 +103,10 @@ router.post('/create-checkout-session',
 
     await newMerey.save();
 
-    const amount = 500000;
-
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [{
-        price_data: {
-          currency: 'kzt',
-          product_data: {
-            name: `Merey: ${person}`,
-            description: desire,
-          },
-          unit_amount: amount,
-        },
-        quantity: 1,
-      }],
-      mode: 'payment',
-      success_url: `${process.env.FRONTEND_URL}/Merey/${newMerey._id}`,
-      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
-      metadata: {
-        type: "Merey",
-        ToyId: newMerey._id.toString(),
-      },
-    });
-    
-
-    res.json({ url: session.url });
+    res.json({ url: `${process.env.FRONTEND_URL}/Merey/${newMerey._id}` });
   } catch (err) {
     console.error("Ошибка создания Merey:", err);
-    res.status(500).json({ error: "Ошибка оплаты", details: err.message });
+    res.status(500).json({ error: "Ошибка создания Merey", details: err.message });
   }
 });
 

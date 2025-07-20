@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
@@ -22,7 +22,6 @@ function WeddingsPage() {
     const [imageerror, setimageErrors] = useState(null);
     const [showDemo, setShowDemo] = useState(false);
     const [demoWedding, setDemoWedding] = useState(null);
-    const [isPaying, setIsPaying] = useState(false);
     const navigate = useNavigate();
 
     const addWedding = () => {
@@ -64,24 +63,21 @@ function WeddingsPage() {
         setimageErrors(null)
     };
 
-    // После оплаты
-    const handleStripePay = async () => {
-        setIsPaying(true);
-        try {
-            const res = await axios.post(`https://weddingproduct22.onrender.com/api/wedding/create-checkout-session`, {
-                groom: demoWedding.groom,
-                bride: demoWedding.bride,
-                desire: demoWedding.desire,
-                date: demoWedding.date,
-                location: demoWedding.location,
-                representatives: demoWedding.representatives,
-                image: demoWedding.image
-            });
-            window.location.href = res.data.url;
-        } catch (err) {
-            setIsPaying(false);
-            alert("Қате! Төлем сессиясын бастау мүмкін болмады.");
-        }
+    // WhatsApp функция
+    const handleWhatsApp = () => {
+        const message = `Сәлем! Мен үйлену тойы жасағымы келеді:
+
+👰 Күйеу бала: ${demoWedding.groom}
+🤵 Қыздың аты: ${demoWedding.bride}
+💬 Шақырту сөзі: ${demoWedding.desire}
+📅 Той уақыты: ${new Date(demoWedding.date).toLocaleDateString('kk-KZ')} ${new Date(demoWedding.date).toLocaleTimeString('kk-KZ', {hour: '2-digit', minute:'2-digit'})}
+📍 Той жері: ${demoWedding.location}
+👥 Той иелері: ${demoWedding.representatives.join(', ')}
+
+Тойды жариялау үшін қанша төлеу керек?`;
+        
+        const whatsappUrl = `https://wa.me/77001234567?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
     };
 
     if (showDemo && demoWedding) {
@@ -89,8 +85,7 @@ function WeddingsPage() {
             <ToyPage
                 {...demoWedding}
                 demo={true}
-                onPay={handleStripePay}
-                isPaying={isPaying}
+                onWhatsApp={handleWhatsApp}
             />
         );
     }

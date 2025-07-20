@@ -1,10 +1,7 @@
 import express from "express";
 import Wedding from '../models/weddingSchema.model.js';
 import cloudinary from '../cloudinary.js';
-import Stripe from "stripe";
 import { body, param, validationResult } from 'express-validator';
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const router = express.Router();
 
@@ -101,32 +98,9 @@ router.post('/create-checkout-session',
             image: imageUrl,
         });
         await newWedding.save();
-        const amount = 500000;
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            line_items: [{
-                price_data: {
-                    currency: 'kzt',
-                    product_data: {
-                        name: `Үйлену той: ${groom} & ${bride}`,
-                        description: desire,
-                    },
-                    unit_amount: amount,
-                },
-                quantity: 1,
-            }],
-            mode: 'payment',
-            success_url: `${process.env.FRONTEND_URL}/wedding/${newWedding._id}`,
-            cancel_url: `${process.env.FRONTEND_URL}/cancel`,
-            metadata: {
-                type: "wedding",
-                ToyId: newWedding._id.toString(),
-            }
-        });
-        res.json({ url: session.url });
+        res.json({ url: `${process.env.FRONTEND_URL}/wedding/${newWedding._id}` });
     } catch (err) {
-        console.error("Stripe error:", err);
-        res.status(500).json({ error: "Ошибка оплаты", details: err.message });
+        res.status(500).json({ error: "Ошибка создания свадьбы", details: err.message });
     }
 });
 
