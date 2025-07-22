@@ -15,7 +15,10 @@ dotenv.config();
 const app = express();
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: [`${process.env.FRONTEND_URL}`, 'http://localhost:3000'], // разрешённые источники
+  credentials: true
+}));
 app.use(helmet());
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
