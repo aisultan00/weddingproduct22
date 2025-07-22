@@ -117,7 +117,7 @@ function HomePage() {
                   color: "#fff",
                 },
               }}
-              href="https://wa.me/"
+              href="https://wa.me/77782695640"
               target="_blank"
             >
               WhatsApp арқылы шақыру жіберу
@@ -159,7 +159,7 @@ function HomePage() {
               letterSpacing: 1,
             }}
           >
-            Той түрлері
+            Той түрлерін жасап көру
           </Typography>
           <Grid container spacing={2} justifyContent="center">
             {typesofholiday.map((type, idx) => (
