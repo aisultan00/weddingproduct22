@@ -99,30 +99,7 @@ function HomePage() {
             alignItems="center"
             sx={{ mt: 3 }}
           >
-            <Button
-              variant="contained"
-              size="large"
-              startIcon={<WhatsAppIcon />}
-              sx={{
-                background: "linear-gradient(90deg, #2196F3 0%, #03A9F4 100%)",
-                color: "#fff",
-                fontWeight: "bold",
-                borderRadius: 3,
-                px: 4,
-                py: 1.5,
-                fontSize: { xs: "1rem", sm: "1.1rem" },
-                boxShadow: "0 2px 8px #2196F344",
-                "&:hover": {
-                  background: "linear-gradient(90deg, #03A9F4 0%, #2196F3 100%)",
-                  color: "#fff",
-                },
-              }}
-              href="https://wa.me/77782695640"
-              target="_blank"
-            >
-              WhatsApp арқылы шақыру жіберу
-            </Button>
-            <Button
+          <Button
               variant="outlined"
               size="large"
               sx={{

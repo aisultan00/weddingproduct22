@@ -73,7 +73,7 @@ function AdminPage() {
         
         // Имитация проверки пароля
         setTimeout(() => {
-            if (password === 'admin123') { // Измените на нужный пароль
+            if (password === 'DTfsfeDEGLHNfsgghGqFAF27') { // Измените на нужный пароль
                 setIsAuthenticated(true);
                 localStorage.setItem('adminAuth', 'true');
                 localStorage.setItem('adminAuthTime', Date.now().toString());

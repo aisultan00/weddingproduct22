@@ -153,11 +153,11 @@ function ToyPage(props) {
                             }}
                         >
                             {props.toytype === "wedding" && `💍 ${wedding.groom?.toUpperCase()} & ${wedding.bride?.toUpperCase()}`}
-                            {props.toytype === "merey" && `${wedding.person} ${wedding.age} жасқа толу тойы`}
-                            {props.toytype === "betashar" && wedding.kelin}
-                            {props.toytype === "sundet" && wedding.toddler}
-                            {props.toytype === "tkesers" && wedding.toddler}
-                            {props.toytype === "uzatus" && wedding.groom}
+                            {props.toytype === "merey" && `${wedding.person?.toUpperCase()} ${String(wedding.age).toUpperCase()} ЖАСҚА ТОЛУ ТОЙЫ`}
+                            {props.toytype === "betashar" && wedding.kelin?.toUpperCase()}
+                            {props.toytype === "sundet" && wedding.toddler?.toUpperCase()}
+                            {props.toytype === "tkesers" && wedding.toddler?.toUpperCase()}
+                            {props.toytype === "uzatus" && wedding.groom?.toUpperCase()}
                         </Typography>
                         {wedding.image && (
                             <Box sx={{
