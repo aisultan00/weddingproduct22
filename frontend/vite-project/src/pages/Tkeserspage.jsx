@@ -9,7 +9,10 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import kk from 'date-fns/locale/kk'; // или 'ru' для русского
 import ToyPage from "../component/ToyPage";
 import SEO from "../component/SEO";
+import { useTheme } from '@mui/material/styles';
 function Tkeserspage() {
+    const theme = useTheme();
+    const pal = theme.palette.toy?.tkesers || theme.palette.success;
     const [toddler, setToddler] = useState("");
     const [date, setDate] = useState("");
     const [desire, setDesire] = useState("");
@@ -110,10 +113,10 @@ function Tkeserspage() {
             >
             <Container maxWidth="md" sx={{ py: 4 }}>
                 <Paper elevation={6} sx={{
-                    background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
-                    color: "#1565c0",
+                    background: `linear-gradient(135deg, ${pal.start || pal.light}55 0%, ${pal.end || pal.main}55 100%)`,
+                    color: theme.palette.text.primary,
                     borderRadius: 4,
-                    boxShadow: "0 4px 24px 0 rgba(33,150,243,0.10)",
+                    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.12)",
                     p: 4,
                     mb: 4
                 }}>
@@ -192,9 +195,9 @@ function Tkeserspage() {
                                 component="span"
                                 sx={{
                                     borderRadius: 3,
-                                    backgroundColor: "#ff4081",
+                                    background: `linear-gradient(90deg, ${pal.main} 0%, ${pal.dark} 100%)`,
                                     color: "white",
-                                    "&:hover": { backgroundColor: "#e91e63" }
+                                    "&:hover": { background: `linear-gradient(90deg, ${pal.dark} 0%, ${pal.main} 100%)` }
                                 }}
                             >
                                 📷 Баланың суреті
@@ -206,7 +209,7 @@ function Tkeserspage() {
                     )}
                         </label>
                         {image && (
-                            <Typography variant="body2" sx={{ mt: 1, color: "#e91e63" }}>
+                            <Typography variant="body2" sx={{ mt: 1, color: theme.palette.secondary.dark }}>
                                 Выбранный файл: {image.file?.name}
                             </Typography>
                         )}
@@ -216,7 +219,7 @@ function Tkeserspage() {
                         variant="contained"
                         color="secondary"
                         fullWidth
-                        sx={{ mt: 2, borderRadius: 3, boxShadow: 3 }}
+                        sx={{ mt: 2, borderRadius: 3, boxShadow: 3, background: `linear-gradient(90deg, ${pal.light} 0%, ${pal.main} 100%)`, '&:hover': { background: `linear-gradient(90deg, ${pal.main} 0%, ${pal.dark} 100%)` } }}
                         onClick={addWedding}
                     >
                         ➕ Той жасау

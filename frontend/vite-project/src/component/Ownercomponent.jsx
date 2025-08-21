@@ -5,8 +5,11 @@ import { Container, Typography, Paper, List, ListItem, ListItemText, Button, Tex
 import { Link } from 'react-router-dom';
 import {motion} from "framer-motion"
 import CopyLinkButton from './CopyLinkButton';
+import { useTheme } from '@mui/material/styles';
 
 const Ownercomponent  = (props) => {
+    const theme = useTheme();
+    const pal = theme.palette.toy?.[props.link] || theme.palette.primary;
     const [wedding, setWedding] = useState(null);
     const [guestCount, setGuestCount] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -42,20 +45,20 @@ const Ownercomponent  = (props) => {
                  className='paper'
                  sx={{p:4,
                     borderRadius:3,
-                    background:"rgba(33,150,243,0.06)"}}
+                    background:`${pal.light}22`}}
             >
-                <Typography variant="h6" sx={{ mt: 3, color: '#1565c0', fontWeight: 'bold' }}>{`Қонақтар саны: ${guestCount}`}</Typography>
+                <Typography variant="h6" sx={{ mt: 3, color: pal.dark, fontWeight: 'bold' }}>{`Қонақтар саны: ${guestCount}`}</Typography>
 
-<Typography variant="h6" sx={{ mt: 3, color: '#1565c0', fontWeight: 'bold' }}>{`Отбасылар мен қонақтар:`}</Typography>
+<Typography variant="h6" sx={{ mt: 3, color: pal.dark, fontWeight: 'bold' }}>{`Отбасылар мен қонақтар:`}</Typography>
 
 {wedding.families.length === 0 ? (
     <Typography>Әлі ешкім жоқ</Typography>
 ) : (
     <List>
         {wedding.families.map((family, index) => (
-            <Card elevation={4} sx={{ mt: 2, borderRadius: 3, bgcolor: 'rgba(33,150,243,0.06)' }} key={index}>
+            <Card elevation={4} sx={{ mt: 2, borderRadius: 3, bgcolor: `${pal.light}22` }} key={index}>
                 <CardContent>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2196F3' }}>{family.familyName}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: pal.main }}>{family.familyName}</Typography>
                     <List>
                         {family.guests.map((guest, i) => (
                             <ListItem key={i}>
@@ -63,7 +66,7 @@ const Ownercomponent  = (props) => {
                             </ListItem>
                         ))}
                     </List>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#03A9F4'}}>{family.wish}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: pal.info || theme.palette.info.main}}>{family.wish}</Typography>
                 </CardContent>
             </Card>
         ))}

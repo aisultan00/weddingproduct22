@@ -22,6 +22,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { kk } from "date-fns/locale";
 import axios from "axios";
 import SEO from "../component/SEO";
+import { useTheme } from '@mui/material/styles';
 
 function TabPanel({ children, value, index, ...other }) {
     return (
@@ -38,6 +39,7 @@ function TabPanel({ children, value, index, ...other }) {
 }
 
 function AdminPage() {
+    const theme = useTheme();
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [password, setPassword] = useState('');
@@ -316,10 +318,10 @@ function AdminPage() {
                         <Paper elevation={6} sx={{ 
                             p: 4, 
                             textAlign: 'center',
-                            background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
+                            background: `linear-gradient(135deg, ${theme.palette.primary.light}22 0%, ${theme.palette.secondary.light}22 100%)`,
                             borderRadius: 4
                         }}>
-                            <Typography variant="h4" gutterBottom sx={{ color: "#1565c0", fontWeight: "bold" }}>
+                            <Typography variant="h4" gutterBottom sx={{ color: theme.palette.primary.dark, fontWeight: "bold" }}>
                                 🔐 Кіру
                             </Typography>
                             <TextField
@@ -342,13 +344,13 @@ function AdminPage() {
                                 disabled={authLoading}
                                 fullWidth
                                 sx={{ 
-                                    background: "linear-gradient(90deg, #2196F3 0%, #03A9F4 100%)",
+                                    background: "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)",
                                     color: "#fff",
                                     fontWeight: "bold",
                                     borderRadius: 3,
                                     py: 1.5,
-                                    "&:hover": {
-                                        background: "linear-gradient(90deg, #03A9F4 0%, #2196F3 100%)",
+                                    '&:hover': {
+                                        background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)",
                                     }
                                 }}
                             >
@@ -397,10 +399,10 @@ function AdminPage() {
             >
                 <Container maxWidth="lg" sx={{ py: 4 }}>
                     <Paper elevation={6} sx={{
-                        background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
-                        color: "#1565c0",
+                        background: `linear-gradient(135deg, ${theme.palette.primary.light}22 0%, ${theme.palette.secondary.light}22 100%)`,
+                        color: theme.palette.text.primary,
                         borderRadius: 4,
-                        boxShadow: "0 4px 24px 0 rgba(33,150,243,0.10)",
+                        boxShadow: "0 4px 24px 0 rgba(79,70,229,0.18)",
                         p: 4,
                         mb: 4
                     }}>
@@ -497,7 +499,7 @@ function AdminPage() {
                                     onChange={(e) => handleImageUpload(e, setWeddingData, weddingData)}
                                 />
                                 <label htmlFor="wedding-image">
-                                    <Button variant="contained" component="span" sx={{ borderRadius: 3 }}>
+                                    <Button variant="contained" component="span" sx={{ borderRadius: 3, background: "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)", '&:hover': { background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)" } }}>
                                         📷 Жұптардың суреті
                                     </Button>
                                 </label>
@@ -573,7 +575,7 @@ function AdminPage() {
                                     onChange={(e) => handleImageUpload(e, setBetasharData, betasharData)}
                                 />
                                 <label htmlFor="betashar-image">
-                                    <Button variant="contained" component="span" sx={{ borderRadius: 3 }}>
+                                    <Button variant="contained" component="span" sx={{ borderRadius: 3, background: "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)", '&:hover': { background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)" } }}>
                                         📷 Қыздың суреті
                                     </Button>
                                 </label>
@@ -658,7 +660,7 @@ function AdminPage() {
                                     onChange={(e) => handleImageUpload(e, setMereyData, mereyData)}
                                 />
                                 <label htmlFor="merey-image">
-                                    <Button variant="contained" component="span" sx={{ borderRadius: 3 }}>
+                                    <Button variant="contained" component="span" sx={{ borderRadius: 3, background: "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)", '&:hover': { background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)" } }}>
                                         📷 Суреті
                                     </Button>
                                 </label>
@@ -734,7 +736,7 @@ function AdminPage() {
                                     onChange={(e) => handleImageUpload(e, setSundetData, sundetData)}
                                 />
                                 <label htmlFor="sundet-image">
-                                    <Button variant="contained" component="span" sx={{ borderRadius: 3 }}>
+                                    <Button variant="contained" component="span" sx={{ borderRadius: 3, background: "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)", '&:hover': { background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)" } }}>
                                         📷 Баланың суреті
                                     </Button>
                                 </label>
@@ -810,7 +812,7 @@ function AdminPage() {
                                     onChange={(e) => handleImageUpload(e, setTkeserData, tkeserData)}
                                 />
                                 <label htmlFor="tkeser-image">
-                                    <Button variant="contained" component="span" sx={{ borderRadius: 3 }}>
+                                    <Button variant="contained" component="span" sx={{ borderRadius: 3, background: "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)", '&:hover': { background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)" } }}>
                                         📷 Баланың суреті
                                     </Button>
                                 </label>
@@ -886,7 +888,7 @@ function AdminPage() {
                                     onChange={(e) => handleImageUpload(e, setUzatuData, uzatuData)}
                                 />
                                 <label htmlFor="uzatu-image">
-                                    <Button variant="contained" component="span" sx={{ borderRadius: 3 }}>
+                                    <Button variant="contained" component="span" sx={{ borderRadius: 3, background: "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)", '&:hover': { background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)" } }}>
                                         📷 Жұптардың суреті
                                     </Button>
                                 </label>

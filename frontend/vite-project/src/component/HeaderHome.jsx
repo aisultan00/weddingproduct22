@@ -14,7 +14,8 @@ import {
   List,
   ListItem,
   ListItemText,
-  Divider
+  Divider,
+  useTheme
 } from '@mui/material';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -38,6 +39,7 @@ function HeaderHome() {
   const isTablet = useMediaQuery('(max-width:900px)');
   const isSmallScreen = useMediaQuery('(max-width:400px)');
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -83,11 +85,11 @@ function HeaderHome() {
       position="static"
       elevation={10}
       sx={{
-        background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
-        color: "#1565c0",
+        background: `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 60%, ${theme.palette.secondary.main} 100%)`,
+        color: theme.palette.primary.contrastText,
         mb: 1,
-        borderRadius: { xs: 2, sm: 4 },
-        boxShadow: "0 4px 24px 0 rgba(33,150,243,0.10)",
+        borderRadius: { xs: 0, sm: 4 },
+        boxShadow: '0 8px 32px rgba(79,70,229,0.25)',
         px: { xs: 0.5, sm: 1, md: 2 },
       }}
     >
@@ -114,29 +116,24 @@ function HeaderHome() {
           <CelebrationIcon 
             onClick={handleSecretAdminAccess}
             sx={{ 
-              color: "#03A9F4", 
+              color: theme.palette.info.main,
               fontSize: { xs: 24, sm: 32, md: 38 },
               flexShrink: 0,
-              // cursor: "pointer", // убираем pointer
               transition: "transform 0.2s",
-              // "&:hover": {
-              //   transform: "scale(1.1)"
-              // }
             }} 
           />
           <Typography
             variant="h5"
             sx={{
               fontWeight: "bold",
-              color: "#2196F3",
+              color: theme.palette.common.white,
               letterSpacing: { xs: 0.5, sm: 1 },
-              textShadow: "0 2px 8px #fff",
-              fontSize: { xs: "0.9rem", sm: "1.1rem", md: "1.5rem", lg: "2rem" },
+              textShadow: "0 2px 8px rgba(0,0,0,0.15)",
+              fontSize: 'clamp(1rem, 2.5vw, 2rem)',
               userSelect: "none",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              maxWidth: { xs: "120px", sm: "200px", md: "none" },
+              whiteSpace: "normal",
+              wordBreak: 'keep-all',
+              hyphens: 'none',
               cursor: "pointer"
             }}
             onClick={() => {navigate("/");
@@ -160,23 +157,22 @@ function HeaderHome() {
               to="/"
               sx={{
                 fontWeight: "bold",
-                color: "#2196F3",
-                background: "rgba(255,255,255,0.8)",
+                color: theme.palette.common.white,
+                background: 'rgba(255,255,255,0.15)',
                 borderRadius: 3,
                 px: { sm: 2, md: 3 },
                 py: { xs: 0.5, sm: 1 },
                 fontSize: { sm: "0.9rem", md: "1.05rem" },
-                boxShadow: "0 2px 8px #2196F333",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
                 minWidth: { sm: "auto", md: "auto" },
-                "&:hover": {
-                  background: "#e3f2fd",
-                  color: "#03A9F4",
+                '&:hover': {
+                  background: 'rgba(255,255,255,0.25)'
                 },
               }}
             >
               <HouseIcon sx={{ 
                 mr: { sm: 0.5, md: 1 }, 
-                color: "#03A9F4",
+                color: theme.palette.info.main,
                 fontSize: { sm: "1.2rem", md: "1.5rem" }
               }} /> 
               {isTablet ? "Басты" : "Басты бет"}
@@ -184,23 +180,22 @@ function HeaderHome() {
             <Button
               color="inherit"
               endIcon={<ArrowDropDownIcon sx={{ 
-                color: "#03A9F4",
+                color: theme.palette.info.main,
                 fontSize: { sm: "1.2rem", md: "1.5rem" }
               }} />}
               onClick={handleMenuOpen}
               sx={{
                 fontWeight: "bold",
-                color: "#2196F3",
-                background: "rgba(255,255,255,0.8)",
+                color: theme.palette.common.white,
+                background: 'rgba(255,255,255,0.15)',
                 borderRadius: 3,
                 px: { sm: 2, md: 3 },
                 py: { xs: 0.5, sm: 1 },
                 fontSize: { sm: "0.9rem", md: "1.05rem" },
-                boxShadow: "0 2px 8px #2196F333",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
                 minWidth: { sm: "auto", md: "auto" },
-                "&:hover": {
-                  background: "#e3f2fd",
-                  color: "#03A9F4",
+                '&:hover': {
+                  background: 'rgba(255,255,255,0.25)'
                 },
               }}
             >
@@ -213,10 +208,10 @@ function HeaderHome() {
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               transformOrigin={{ vertical: "top", horizontal: "right" }}
               sx={{
-                "& .MuiPaper-root": {
+                '& .MuiPaper-root': {
                   minWidth: { sm: 160, md: 180 },
                   borderRadius: 3,
-                  boxShadow: "0 4px 24px #b388ff33",
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.15)'
                 }
               }}
             >
@@ -228,12 +223,11 @@ function HeaderHome() {
                   onClick={handleMenuClose}
                   sx={{
                     fontWeight: "bold",
-                    color: "#2196F3",
+                    color: theme.palette.text.primary,
                     fontSize: { sm: "0.9rem", md: "1rem" },
                     py: { sm: 0.5, md: 1 },
-                    "&:hover": {
-                      background: "#e3f2fd",
-                      color: "#03A9F4",
+                    '&:hover': {
+                      background: theme.palette.action.hover
                     },
                   }}
                 >
@@ -255,10 +249,10 @@ function HeaderHome() {
               onClick={handleDrawerToggle}
               sx={{
                 ml: 1,
-                color: "#03A9F4",
-                background: "rgba(255,255,255,0.7)",
+                color: theme.palette.info.main,
+                background: 'rgba(255,255,255,0.15)',
                 borderRadius: 2,
-                boxShadow: "0 2px 8px #2196F333",
+                boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
                 p: { xs: 0.5, sm: 1 },
               }}
             >
@@ -272,23 +266,23 @@ function HeaderHome() {
                 sx: {
                   width: { xs: "85vw", sm: 240 },
                   maxWidth: 280,
-                  background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
-                  color: "#1565c0",
+                  background: theme.palette.background.default,
+                  color: theme.palette.text.primary,
                   p: { xs: 1.5, sm: 2 },
                 }
               }}
             >
               <Box sx={{ mb: 2, display: "flex", alignItems: "center", gap: 1 }}>
-                <CelebrationIcon sx={{ color: "#03A9F4" }} />
-                <Typography variant="h6" fontWeight="bold" sx={{ color: "#2196F3" }}>
+                <CelebrationIcon sx={{ color: theme.palette.info.main }} />
+                <Typography variant="h6" fontWeight="bold" sx={{ color: theme.palette.primary.main }}>
                   Той жүйесі
                 </Typography>
               </Box>
               <Divider sx={{ mb: 1 }} />
               <List>
                 <ListItem button component={Link} to="/" onClick={handleDrawerToggle}>
-                  <HouseIcon sx={{ mr: 1, color: "#03A9F4" }} />
-                  <ListItemText primary="Басты бет" sx={{ color: "#2196F3" }} />
+                  <HouseIcon sx={{ mr: 1, color: theme.palette.info.main }} />
+                  <ListItemText primary="Басты бет" sx={{ color: theme.palette.primary.main }} />
                 </ListItem>
                 <Divider sx={{ my: 1 }} />
                 {typesofholiday.map((type, idx) => (

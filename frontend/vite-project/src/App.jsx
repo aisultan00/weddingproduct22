@@ -11,16 +11,18 @@ import StarIcon from '@mui/icons-material/Star';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HeaderHome from "./component/HeaderHome";
+import { useTheme } from '@mui/material/styles';
 
 // --- Новый современный и адаптивный HomePage ---
 function HomePage() {
+  const theme = useTheme();
   const typesofholiday = [
-    { name: "Үйлену той", icon: <FavoriteIcon sx={{ color: "#03A9F4" }} /> ,link: "/weddings" },
-    { name: "Ұзату той", icon: <CelebrationIcon sx={{ color: "#2196F3" }} /> ,link: "/uzatus" },
-    { name: "Беташар", icon: <EmojiEmotionsIcon sx={{ color: "#03A9F4" }} /> ,link: "/betashar" },
-    { name: "Сүндет той", icon: <ChildCareIcon sx={{ color: "#2196F3" }} /> ,link: "/sundet" },
-    { name: "Тұсаукесер", icon: <Diversity3Icon sx={{ color: "#03A9F4" }} /> ,link: "/tkesers" },
-    { name: "Мерей той", icon: <StarIcon sx={{ color: "#2196F3" }} /> ,link: "/merey" },
+    { name: "Үйлену той", icon: <FavoriteIcon sx={{ color: theme.palette.secondary.light }} /> ,link: "/weddings" },
+    { name: "Ұзату той", icon: <CelebrationIcon sx={{ color: theme.palette.primary.light }} /> ,link: "/uzatus" },
+    { name: "Беташар", icon: <EmojiEmotionsIcon sx={{ color: theme.palette.secondary.light }} /> ,link: "/betashar" },
+    { name: "Сүндет той", icon: <ChildCareIcon sx={{ color: theme.palette.primary.light }} /> ,link: "/sundet" },
+    { name: "Тұсаукесер", icon: <Diversity3Icon sx={{ color: theme.palette.secondary.light }} /> ,link: "/tkesers" },
+    { name: "Мерей той", icon: <StarIcon sx={{ color: theme.palette.primary.light }} /> ,link: "/merey" },
   ];
 
   const features = [
@@ -36,7 +38,7 @@ function HomePage() {
       sx={{
         minHeight: "100vh",
         minWidth: "100vw",
-        background: "linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 100%)",
+        background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${theme.palette.primary.light}44 100%)`,
         position: "relative",
         overflow: "auto",
         pb: { xs: 10, md: 0 },
@@ -58,9 +60,9 @@ function HomePage() {
           sx={{
             width: "100%",
             borderRadius: 5,
-            background: "rgba(33,150,243,0.06)",
-            boxShadow: "0 8px 32px 0 rgba(33,150,243,0.10)",
-            color: "#1565c0",
+            background: `linear-gradient(135deg, ${theme.palette.primary.light}55 0%, ${theme.palette.secondary.light}55 100%)`,
+            boxShadow: "0 8px 32px 0 rgba(79,70,229,0.18)",
+            color: theme.palette.primary.dark,
             textAlign: "center",
             p: { xs: 2, sm: 4, md: 6 },
             mb: { xs: 3, md: 6 },
@@ -68,15 +70,18 @@ function HomePage() {
             overflow: "hidden",
           }}
         >
-          <CelebrationIcon sx={{ fontSize: { xs: 48, md: 72 }, color: "#03A9F4", mb: 2 }} />
+          <CelebrationIcon sx={{ fontSize: { xs: 48, md: 72 }, color: theme.palette.info.main, mb: 2 }} />
           <Typography
             variant="h2"
             sx={{
               fontWeight: "bold",
-              fontSize: { xs: "2rem", sm: "2.5rem", md: "3.2rem" },
+              fontSize: 'clamp(1.6rem, 5vw, 3.2rem)',
               mb: 2,
-              color: "#1565c0",
+              color: theme.palette.primary.main,
               letterSpacing: 1,
+              whiteSpace: 'normal',
+              wordBreak: 'keep-all',
+              hyphens: 'none'
             }}
           >
             Қазақша той шақыру – заманауи форматта!
@@ -85,9 +90,12 @@ function HomePage() {
             variant="h5"
             sx={{
               mb: 2,
-              color: "#2196F3",
+              color: theme.palette.primary.dark,
               fontWeight: 500,
-              fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" },
+              fontSize: 'clamp(1rem, 3.2vw, 1.5rem)',
+              whiteSpace: 'normal',
+              wordBreak: 'keep-all',
+              hyphens: 'none'
             }}
           >
             Тойыңызды онлайн ұйымдастырыңыз, қонақтарыңызды оңай шақырыңыз, жауап алыңыз және естеліктерді сақтаңыз.
@@ -103,17 +111,17 @@ function HomePage() {
               variant="outlined"
               size="large"
               sx={{
-                borderColor: "#03A9F4",
-                color: "#2196F3",
+                borderColor: theme.palette.primary.main,
+                color: theme.palette.primary.main,
                 fontWeight: "bold",
                 borderRadius: 3,
                 px: 4,
                 py: 1.5,
                 fontSize: { xs: "1rem", sm: "1.1rem" },
-                "&:hover": {
-                  background: "rgba(33,150,243,0.06)",
-                  borderColor: "#2196F3",
-                  color: "#1565c0",
+                '&:hover': {
+                  background: `${theme.palette.primary.main}14`,
+                  borderColor: theme.palette.primary.dark,
+                  color: theme.palette.primary.dark,
                 },
               }}
               href="#features"
@@ -129,7 +137,7 @@ function HomePage() {
             variant="h5"
             sx={{
               fontWeight: "bold",
-              color: "#2196F3",
+              color: theme.palette.primary.main,
               mb: 2,
               textAlign: "center",
               fontSize: { xs: "1.2rem", sm: "1.5rem" },
@@ -152,17 +160,18 @@ function HomePage() {
                     px: 1,
                     py: 2,
                     borderRadius: 4,
-                    background: "rgba(33,150,243,0.06)",
-                    color: "#2196F3",
+                    background: `${theme.palette.primary.light}22`,
+                    color: theme.palette.primary.main,
                     fontWeight: "bold",
                     fontSize: { xs: "1rem", sm: "1.1rem" },
                     minWidth: 80,
                     maxWidth: 120,
                     mx: "auto",
+                    boxShadow: "0 4px 24px rgba(0,0,0,0.12)",
                   }}
                 >
                   {type.icon}
-                  <span style={{ fontSize: "1rem", wordBreak: "break-word" }}>{type.name}</span>
+                  <span style={{ fontSize: 'clamp(0.85rem, 2.6vw, 1.05rem)', whiteSpace: 'normal', wordBreak: 'keep-all', hyphens: 'none' }}>{type.name}</span>
                 </Paper>
                 </Link>
               </Grid>
@@ -176,7 +185,7 @@ function HomePage() {
             variant="h5"
             sx={{
               fontWeight: "bold",
-              color: "#2196F3",
+              color: theme.palette.primary.main,
               mb: 2,
               textAlign: "center",
               fontSize: { xs: "1.2rem", sm: "1.5rem" },
@@ -193,16 +202,16 @@ function HomePage() {
                     display: "flex",
                     alignItems: "center",
                     gap: 1,
-                    background: "rgba(33,150,243,0.06)",
+                    background: `${theme.palette.primary.light}33`,
                     borderRadius: 3,
                     p: 2,
                   }}
                 >
-                  <CheckCircleIcon sx={{ color: "#03A9F4" }} />
+                  <CheckCircleIcon sx={{ color: theme.palette.success.main }} />
                   <Typography
                     variant="body1"
                     sx={{
-                      color: "#1565c0",
+                      color: theme.palette.text.primary,
                       fontSize: { xs: "1rem", sm: "1.1rem" },
                       fontWeight: 500,
                     }}
@@ -221,9 +230,9 @@ function HomePage() {
           sx={{
             width: "100%",
             borderRadius: 5,
-            background: "linear-gradient(90deg, #2196F322 0%, #03A9F422 100%)",
-            boxShadow: "0 4px 24px 0 rgba(33,150,243,0.10)",
-            color: "#2196F3",
+            background: `linear-gradient(90deg, ${theme.palette.primary.main}55 0%, ${theme.palette.secondary.main}55 100%)`,
+            boxShadow: "0 4px 24px 0 rgba(79,70,229,0.18)",
+            color: theme.palette.primary.main,
             textAlign: "center",
             p: { xs: 2, sm: 4 },
             mb: { xs: 2, md: 4 },
@@ -233,12 +242,14 @@ function HomePage() {
             variant="h4"
             sx={{
               fontWeight: "bold",
-              color: "#2196F3",
-              fontSize: { xs: "1.3rem", sm: "2rem", md: "2.5rem" },
+              color: theme.palette.primary.main,
+              fontSize: 'clamp(1.2rem, 4.5vw, 2.5rem)',
               letterSpacing: 2,
-              textShadow: "0 4px 24px #fff, 0 2px 8px #2196F388",
+              textShadow: "0 4px 24px #fff",
               mb: 1,
-              wordBreak: "break-word"
+              whiteSpace: 'normal',
+              wordBreak: 'keep-all',
+              hyphens: 'none'
             }}
           >
             Қазақтың тойы – дәстүр мен заманауи технологияның үйлесімі!
@@ -246,7 +257,7 @@ function HomePage() {
           <Typography
             variant="body1"
             sx={{
-              color: "#1565c0",
+              color: theme.palette.text.secondary,
               fontSize: { xs: "1rem", sm: "1.1rem" },
               mb: 2,
             }}
@@ -257,16 +268,16 @@ function HomePage() {
             variant="contained"
             size="large"
             sx={{
-              background: "linear-gradient(90deg, #2196F3 0%, #03A9F4 100%)",
+              background: "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)",
               color: "#fff",
               fontWeight: "bold",
               borderRadius: 3,
               px: 4,
               py: 1.5,
               fontSize: { xs: "1rem", sm: "1.1rem" },
-              boxShadow: "0 2px 8px #2196F344",
-              "&:hover": {
-                background: "linear-gradient(90deg, #03A9F4 0%, #2196F3 100%)",
+              boxShadow: "0 2px 8px rgba(79,70,229,0.35)",
+              '&:hover': {
+                background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)",
                 color: "#fff",
               },
             }}
@@ -286,18 +297,18 @@ function HomePage() {
           zIndex: 1300,
           textAlign: "center",
           py: { xs: 1, md: 2 },
-          background: "rgba(33,150,243,0.06)",
-          backdropFilter: "blur(2px)",
+          background: `${theme.palette.background.paper}DD`,
+          backdropFilter: "blur(6px)",
         }}
       >
         <Typography
           variant="h2"
           sx={{
             fontWeight: "bold",
-            color: "#2196F3",
+            color: theme.palette.primary.main,
             fontSize: { xs: "1.1rem", sm: "2rem", md: "3rem", lg: "3.5rem" },
             letterSpacing: 2,
-            textShadow: "0 4px 24px #fff, 0 2px 8px #2196F388",
+            textShadow: "0 4px 24px #fff",
             mb: 0,
             wordBreak: "break-word"
           }}

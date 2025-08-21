@@ -7,9 +7,11 @@ import { QRCodeSVG } from 'qrcode.react';
 import CopyLinkButton from "./CopyLinkButton";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useTheme } from '@mui/material/styles';
 const kazakhPattern = "url('https://svgshare.com/i/14uG.svg')";
 
 function ToyPage(props) {
+    const theme = useTheme();
     // Если демо-режим, wedding берём из props, иначе с сервера
     const [wedding, setWedding] = useState(props.demo ? props : null);
     const [familyName, setFamilyName] = useState('');
@@ -112,13 +114,13 @@ function ToyPage(props) {
                     sx={{
                         p: { xs: 2, sm: 4 },
                         borderRadius: 5,
-                        background: "rgba(33,150,243,0.06)",
-                        boxShadow: "0 8px 32px 0 rgba(33,150,243,0.10)",
-                        color: "#1565c0",
+                        background: `${theme.palette.primary.light}11`,
+                        boxShadow: "0 8px 32px 0 rgba(79,70,229,0.18)",
+                        color: theme.palette.text.primary,
                         position: "relative",
                         overflow: "hidden",
-                        border: "6px solid #03A9F4",
-                        backgroundImage: `${kazakhPattern}, linear-gradient(135deg, #F5F7FA 0%, #A7C7E7 100%)`,
+                        border: `6px solid ${theme.palette.primary.main}`,
+                        backgroundImage: `${kazakhPattern}, linear-gradient(135deg, #F5F7FA 0%, #EDE9FE 100%)`,
                         backgroundRepeat: "repeat, no-repeat",
                         backgroundSize: "120px, cover",
                     }}
@@ -127,7 +129,7 @@ function ToyPage(props) {
                     <Box sx={{
                         width: "100%",
                         height: 32,
-                        background: "#2196F3",
+                        background: theme.palette.primary.main,
                         backgroundImage: kazakhPattern,
                         backgroundRepeat: "repeat-x",
                         backgroundSize: "120px",
@@ -146,10 +148,14 @@ function ToyPage(props) {
                             fontWeight="bold"
                             align="center"
                             sx={{
-                                color: "#1565c0",
+                                color: theme.palette.primary.dark,
                                 mb: 2,
                                 letterSpacing: 2,
                                 textShadow: "0 2px 8px #fff",
+                                fontSize: 'clamp(1.25rem, 4.8vw, 2.1rem)',
+                                whiteSpace: 'normal',
+                                wordBreak: 'keep-all',
+                                hyphens: 'none'
                             }}
                         >
                             {props.toytype === "wedding" && `💍 ${wedding.groom?.toUpperCase()} & ${wedding.bride?.toUpperCase()}`}
@@ -169,14 +175,14 @@ function ToyPage(props) {
                                     src={wedding.image}
                                     alt="Той суреті"
                                     style={{
-                                        border: "5px solid #7C4DFF",
-                                        boxShadow: "0 4px 24px #b388ff55"
+                                        border: `5px solid ${theme.palette.secondary.main}`,
+                                        boxShadow: "0 4px 24px rgba(217,70,239,0.35)"
                                     }}
                                     className='image'
                                 />
                             </Box>
                         )}
-                        <Typography variant="h6" fontWeight="bold" mt={2} sx={{ color: "#03A9F4" }}>
+                        <Typography variant="h6" fontWeight="bold" mt={2} sx={{ color: theme.palette.info.main }}>
                             Шақырту сөзі: <br />{wedding.desire}
                         </Typography>
                         {/* Countdown */}
@@ -186,7 +192,7 @@ function ToyPage(props) {
                                     fontFamily: "Georgia, serif",
                                     fontWeight: 500,
                                     fontSize: { xs: "1.1rem", sm: "1.3rem" },
-                                    color: "#1565c0"
+                                    color: theme.palette.primary.dark
                                 }}
                             >
                                 Тойдың басталу уақыты:
@@ -207,7 +213,7 @@ function ToyPage(props) {
                                     fontFamily: "Georgia, serif",
                                     fontWeight: 500,
                                     fontSize: { xs: "1.05rem", sm: "1.15rem" },
-                                    color: "#1976d2",
+                                    color: theme.palette.primary.main,
                                     mb: 1
                                 }}
                             >
@@ -231,17 +237,17 @@ function ToyPage(props) {
                                             width: 56,
                                             height: 56,
                                             borderRadius: "50%",
-                                            border: "2px solid #00bcd4",
+                                            border: `2px solid ${theme.palette.info.main}`,
                                             display: "flex",
                                             flexDirection: "column",
                                             alignItems: "center",
                                             justifyContent: "center",
-                                            background: "#fff",
+                                            background: theme.palette.background.paper,
                                             mx: 0.5,
                                             mb: { xs: 1, sm: 0 }
                                         }}
                                     >
-                                        <Typography sx={{ fontWeight: "bold", color: "#00bcd4", fontSize: "1.1rem" }}>
+                                        <Typography sx={{ fontWeight: "bold", color: theme.palette.info.main, fontSize: "1.1rem" }}>
                                             {String(item.value).padStart(2, "0")}
                                         </Typography>
                                         <Typography sx={{ fontSize: "0.85rem", color: "#222" }}>
@@ -251,8 +257,8 @@ function ToyPage(props) {
                                 ))}
                             </Box>
                         </Box>
-                        <Typography variant="h6" sx={{ color: "#d84315", fontWeight: "bold", mt: 1 }}>
-                            📍 Орны: <span style={{ color: "#7C4DFF" }}>{wedding.location}</span>
+                        <Typography variant="h6" sx={{ color: theme.palette.warning.dark, fontWeight: "bold", mt: 1 }}>
+                            📍 Орны: <span style={{ color: theme.palette.secondary.main }}>{wedding.location}</span>
                         </Typography>
                     </motion.div>
                     <motion.div
@@ -260,7 +266,7 @@ function ToyPage(props) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 1.2 }}
                     >
-                        <Typography variant="h6" fontWeight="bold" mt={3} sx={{ color: "#5e35b1" }}>
+                        <Typography variant="h6" fontWeight="bold" mt={3} sx={{ color: theme.palette.secondary.dark }}>
                             🤵‍♂️ Той иелері
                         </Typography>
                         <List>
@@ -268,27 +274,27 @@ function ToyPage(props) {
                                     <ListItemText primary={wedding.representatives} />
                                 </ListItem>
                         </List>
-                        <Typography variant="h6" sx={{ mt: 3, color: "#d84315", fontWeight: 'bold' }}>Отбасыны қосу</Typography>
+                        <Typography variant="h6" sx={{ mt: 3, color: theme.palette.warning.dark, fontWeight: 'bold' }}>Отбасыны қосу</Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}>
                             <TextField label="Отбасы аты" fullWidth InputProps={{
-                                style: { color: "#7C4DFF" },
+                                style: { color: theme.palette.secondary.main },
                             }}
                                 InputLabelProps={{
-                                    style: { color: "#8e24aa" },
+                                    style: { color: theme.palette.secondary.dark },
                                 }} value={familyName} onChange={e => setFamilyName(e.target.value)} />
                             <TextField label="Қонақтың аты" fullWidth InputProps={{
-                                style: { color: "#7C4DFF" },
+                                style: { color: theme.palette.secondary.main },
                             }}
                                 InputLabelProps={{
-                                    style: { color: "#8e24aa" },
+                                    style: { color: theme.palette.secondary.dark },
                                 }} value={guestName} onChange={e => setGuestName(e.target.value)} />
                             <Button variant="contained" color="primary" onClick={addGuest} sx={{
                                 borderRadius: 3,
-                                background: "linear-gradient(90deg, #7C4DFF 0%, #B388FF 100%)",
+                                background: "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)",
                                 color: "#fff",
                                 fontWeight: "bold",
                                 "&:hover": {
-                                    background: "linear-gradient(90deg, #B388FF 0%, #7C4DFF 100%)",
+                                    background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)",
                                 },
                             }}>
                                 Қонақты қосу
@@ -299,10 +305,10 @@ function ToyPage(props) {
                         {guests.map((guest, index) => (
                             <ListItem 
                                 key={index} 
-                                sx={{ bgcolor: '#f3e5f5', borderRadius: 2, mb: 1 }}
+                                sx={{ bgcolor: `${theme.palette.secondary.light}22`, borderRadius: 2, mb: 1 }}
                                 secondaryAction={
                                     <IconButton edge="end" aria-label="delete" onClick={() => removeGuest(index)}>
-                                        <DeleteIcon sx={{ color: 'linear-gradient(90deg, #7C4DFF 0%, #B388FF 100%)' }} />
+                                        <DeleteIcon sx={{ color: theme.palette.error.main }} />
                                     </IconButton>
                                 }
                             >
@@ -312,18 +318,18 @@ function ToyPage(props) {
                     </List>
                         </List>
                         <TextField label="Тілек" fullWidth InputProps={{
-                            style: { color: "#7C4DFF" },
+                            style: { color: theme.palette.secondary.main },
                         }}
                             InputLabelProps={{
-                                style: { color: "#8e24aa" },
+                                style: { color: theme.palette.secondary.dark },
                             }} value={wish} onChange={e => setWish(e.target.value)} />
                         <Button variant="contained" color="secondary" fullWidth onClick={addFamily} sx={{
                             mt: 2, borderRadius: 3,
-                            background: "linear-gradient(90deg, #B388FF 0%, #7C4DFF 100%)",
+                            background: "linear-gradient(90deg, #A5B4FC 0%, #F0ABFC 100%)",
                             color: "#fff",
                             fontWeight: "bold",
                             "&:hover": {
-                                background: "linear-gradient(90deg, #7C4DFF 0%, #B388FF 100%)",
+                                background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)",
                             },
                         }}>
                             Отбасыны қосу
@@ -331,11 +337,11 @@ function ToyPage(props) {
                     </motion.div>
                     <Button variant="contained" color="secondary" fullWidth onClick={navtoowner} sx={{
                         mt: 2, borderRadius: 3,
-                        background: "linear-gradient(90deg, #B388FF 0%, #7C4DFF 100%)",
+                        background: "linear-gradient(90deg, #A5B4FC 0%, #F0ABFC 100%)",
                         color: "#fff",
                         fontWeight: "bold",
                         "&:hover": {
-                            background: "linear-gradient(90deg, #7C4DFF 0%, #B388FF 100%)",
+                            background: "linear-gradient(90deg, #4F46E5 0%, #C026D3 100%)",
                         },
                     }}>
                         Той қонақтары мен тілектерін көру {props.demo ? " (Демо режимде жасамайды)" : ""}
@@ -345,12 +351,12 @@ function ToyPage(props) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 1.6 }}
                     >
-                        <Typography fontWeight="bold" mt={5} fontSize={20} sx={{ color: "#7C4DFF" }}>
+                        <Typography fontWeight="bold" mt={5} fontSize={20} sx={{ color: theme.palette.secondary.main }}>
                             Cілтеме жіберу үшін ➡
                         </Typography>
                         <CopyLinkButton />
                         <Box sx={{ display: 'flex', mt: 2, flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-                            <Typography fontWeight="bold" mt={5} fontSize={20} sx={{ color: "#7C4DFF" }}>
+                            <Typography fontWeight="bold" mt={5} fontSize={20} sx={{ color: theme.palette.secondary.main }}>
                                 Немесе
                             </Typography>
                             <QRCodeSVG value={window.location.href} size={128} />
@@ -384,7 +390,7 @@ function ToyPage(props) {
                     <Box sx={{
                         width: "100%",
                         height: 32,
-                        background: "#2196F3",
+                        background: theme.palette.primary.main,
                         backgroundImage: kazakhPattern,
                         backgroundRepeat: "repeat-x",
                         backgroundSize: "120px",

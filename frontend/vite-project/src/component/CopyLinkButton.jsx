@@ -17,15 +17,21 @@ const CopyLinkButton = () => {
     <button
       onClick={handleCopy}
       style={{
-        margin:"10px 0px 0px 5px",
+        margin: "10px 0px 0px 5px",
         padding: "10px 20px",
-        borderRadius: "10px",
+        borderRadius: "12px",
         border: "none",
-        backgroundColor: copied ? "#B388FF" : "#7C4DFF",
+        background: copied
+          ? "linear-gradient(90deg, #A5B4FC 0%, #F0ABFC 100%)"
+          : "linear-gradient(90deg, #6366F1 0%, #D946EF 100%)",
         color: "#fff",
         cursor: "pointer",
-        transition: "background 0.3s",
+        transition: "filter 0.2s ease, transform 0.05s ease",
+        boxShadow: "0 6px 18px rgba(99,102,241,0.35)",
       }}
+      onMouseDown={(e) => (e.currentTarget.style.transform = 'translateY(1px)')}
+      onMouseUp={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
+      onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
     >
       {copied ? "Скопировано!" : "Копировать ссылку"}
     </button>
