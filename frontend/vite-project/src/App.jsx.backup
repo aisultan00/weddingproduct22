@@ -341,7 +341,6 @@ import Uzatupage from "./pages/slugpages/uzatu/Uzatupage";
 import GuestsUzatu from "./pages/slugpages/uzatu/GuestsUzatu";
 import AdminPage from "./pages/AdminPage";
 import NotfoundPage from "./component/NotfoundPage";
-import TopEventsPage from "./pages/TopEventsPage";
 
 function App() {
   return (
@@ -373,7 +372,6 @@ function App() {
         <Route path="/uzatus/:id" element={<Uzatupage />} />
         <Route path="/uzatus/:id/Ownerpage" element={<GuestsUzatu />} />
         <Route path="/admin" element={<AdminPage />} />
-<Route path="/top-events" element={<TopEventsPage />} />
         <Route path="*" element={<NotfoundPage />} />
       </Routes>
     </Router>

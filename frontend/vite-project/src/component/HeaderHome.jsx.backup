@@ -22,7 +22,6 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import HouseIcon from '@mui/icons-material/House';
 import MenuIcon from '@mui/icons-material/Menu';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 const typesofholiday = [
   "Үйлену той", "Ұзату той", "Беташар", "Сүндет той", "Тұсаукесер", "Мерей той"
@@ -180,8 +179,11 @@ function HeaderHome() {
             </Button>
             <Button
               color="inherit"
-              component={Link}
-              to="/top-events"
+              endIcon={<ArrowDropDownIcon sx={{ 
+                color: theme.palette.info.main,
+                fontSize: { sm: "1.2rem", md: "1.5rem" }
+              }} />}
+              onClick={handleMenuOpen}
               sx={{
                 fontWeight: "bold",
                 color: theme.palette.common.white,
@@ -197,15 +199,8 @@ function HeaderHome() {
                 },
               }}
             >
-              <TrendingUpIcon sx={{ 
-                mr: { sm: 0.5, md: 1 }, 
-                color: theme.palette.info.main,
-                fontSize: { sm: "1.2rem", md: "1.5rem" }
-              }} /> 
-              {isTablet ? "Топ" : "Топ 50"}
+              {isTablet ? "Тойлар" : "Той түрлері"}
             </Button>
-         
-         
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
@@ -290,10 +285,6 @@ function HeaderHome() {
                   <ListItemText primary="Басты бет" sx={{ color: theme.palette.primary.main }} />
                 </ListItem>
                 <Divider sx={{ my: 1 }} />
-<ListItem button component={Link} to="/top-events" onClick={handleDrawerToggle}>
-                  <TrendingUpIcon sx={{ mr: 1, color: theme.palette.info.main }} />
-                  <ListItemText primary="Топ 50 мероприятий" sx={{ color: theme.palette.primary.main }} />
-                </ListItem>
                 {typesofholiday.map((type, idx) => (
                   <ListItem
                     button
@@ -306,10 +297,6 @@ function HeaderHome() {
                   </ListItem>
                 ))}
                 <Divider sx={{ my: 1 }} />
-<ListItem button component={Link} to="/top-events" onClick={handleDrawerToggle}>
-                  <TrendingUpIcon sx={{ mr: 1, color: theme.palette.info.main }} />
-                  <ListItemText primary="Топ 50 мероприятий" sx={{ color: theme.palette.primary.main }} />
-                </ListItem>
 
               </List>
             </Drawer>
